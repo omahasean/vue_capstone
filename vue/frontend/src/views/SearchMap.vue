@@ -1,8 +1,12 @@
 <template>
-  <div>
+  <div class="sidebar">
       <form>
-          <label for="address">Address</label>
-          <input type="text" id="address" placeholder="Address">
+        <div class="search">  
+            <input type="text" id="address" placeholder="Please Enter a City"/>
+        </div>
+        <div>
+            <input type="submit" id="submit" value="submit">
+        </div>
       </form>
   </div>
 </template>

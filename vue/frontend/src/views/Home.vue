@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <Sidebar/>
     <h1>Home</h1>
     <p>You made it</p>
     <button @click="displayMap">Submit</button>
@@ -7,9 +8,12 @@
 </template>
 
 <script>
+import Sidebar from './Sidebar';
 export default {
   name: 'home',
-  components: {},
+  components: {
+    Sidebar
+  },
   data() {
     return {
       landmark: {
