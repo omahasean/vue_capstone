@@ -28,7 +28,12 @@ public class JDBCLocationsDAOTest  extends DAOIntegrationTest {
 		
 	}
 	
-	
+	@Test
+	public void getAllLocationsTest() {
+		List<Location> daoList = dao.getAllLocations();
+		
+		Assert.assertEquals(3, daoList.size());
+	}
 	private void assertLocationsEqual(Location expected, Location actual) {
 		Assert.assertTrue("Name not Equal", expected.getName().equals(actual.getName()));
 		Assert.assertTrue("City not Equal", expected.getCity().equals(actual.getCity()));
