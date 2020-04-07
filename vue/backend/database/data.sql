@@ -10,4 +10,3 @@ INSERT INTO landmarks("name", "address", "zipcode", "city")
 VALUES ('Easton Town Center', '160 Easton Town Ctr', 43219, 'Columbus'),
        ('Ohio Statehouse', '1 Capitol Sq', 43215, 'Columbus'),
        ('Nationwide Arena', '200 W Nationwide Blvd', 43215, 'Columbus');
-
