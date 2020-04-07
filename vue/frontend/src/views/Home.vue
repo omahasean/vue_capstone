@@ -1,12 +1,15 @@
 <template>
+
   <div id="homePage" class="home">
+    <Sidebar/>
+    <div class="content-home">
     <h1>City Tours</h1>
-      <Sidebar/>
+      
     <button @click="displayMap">Submit</button>
     <button @click="getLocations">Submit</button>
     <!-- <button @click="showMap">Map</button> -->
     <img v-bind:src=" imageSrc.src ">
-    
+    </div>
   </div>
   
 </template>
@@ -77,5 +80,7 @@ const dummyURL = 'http://dev.virtualearth.net/REST/v1/Locations?locality=Columbu
 </script>
 
 <style scoped>
-
+  .content-home{
+   margin-left:310px
+  }
 </style>
