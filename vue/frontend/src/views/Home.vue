@@ -14,13 +14,17 @@ export default {
     return {
       landmark: {
         name: '',
-        zipcode: ''
+        zipcode: '',
+        streetAddress: '',
+        state: '',
+        city: '',
+    
       }
     }
   },
   methods: {
     displayMap() {
-      fetch(`http://dev.virtualearth.net/REST/v1/Locations?locality=Greenville&maxResults=10&key=${apiKey}`, {
+      fetch(`${dummyURL}${apiKey}`, {
         method: 'GET'
       })
       .then((response) => {
@@ -31,11 +35,24 @@ export default {
         this.landmark.name = json.name;
       })
       .catch((err) => console.error(err));
+    },
+    getLocations() {
+      fetch(`${process.env.VUE_APP_REMOTE_API}`, {
+        method: 'GET'
+      })
+      .then((response) => {
+        return response.json;
+      })
+      .then((json) => {
+        console.log(json);
+       
+      })
+      .catch((err) => console.error(err));
     }
   }
 }
 
 //const urlMap = 'http://dev.virtualearth.net/REST/v1/Locations/US/OH/43201/Columbus&maxResults={maxResults}&key=AmvR-c42ne6GrECkyJERi7B9mjs7vH-7OGFoG7jf405tiyb7huCJIfK1t_kn8S7m';
 const apiKey = 'AmvR-c42ne6GrECkyJERi7B9mjs7vH-7OGFoG7jf405tiyb7huCJIfK1t_kn8S7m';
-
+const dummyURL = 'http://dev.virtualearth.net/REST/v1/Locations?locality=Columbus&postalCode=43201&maxResults=10&key='
 </script>
