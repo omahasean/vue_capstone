@@ -38,7 +38,7 @@ export default {
       // },
       imageSrc : {
       src: 'http://dev.virtualearth.net/REST/v1/Imagery/Map/Road/47.619048,-122.35384/15?mapSize=2000,1000&pp=47.620495,-122.34931;21;AA&pp=47.619385,-122.351485;;AB&pp=47.616295,-122.3556;22&mapMetadata=0&format=jpeg&key=AmvR-c42ne6GrECkyJERi7B9mjs7vH-7OGFoG7jf405tiyb7huCJIfK1t_kn8S7m',
-      src1: `https://dev.virtualearth.net/REST/v1/Imagery/Map/Road/${city}?mapSize=500,400&key=${apiKey}`
+      src1: `https://dev.virtualearth.net/REST/v1/Imagery/Map/Road/${city}?mapSize=1500,800&key=${apiKey}`
       },
       location: {
         latitude: '',
