@@ -2,8 +2,11 @@
   <div class="container">
     <h2>Start Your Own Tour</h2>
       <form class="form">
-            <input type="text" class="search" placeholder="Please Enter a City"/>
-            <input type="submit" class="button" value="submit">
+            <input type="text"  class="search" placeholder="Please Enter a City" v-model.trim="cityName"/>
+            <!-- <input type="submit" class="button" value="submit" @click="searchCity"> -->
+           <button class="button" @click="searchCity">Submit</button>
+
+           
 
       </form>
       <hr id="line">
@@ -13,8 +16,41 @@
 
 <script>
 export default {
+  name: 'searchMap',
+  
 
-}
+data() {
+  return {
+    cityName: '',
+    landmarkArray: []
+  }
+},
+methods: {
+  searchCity(cityName) {
+      fetch(`${process.env.VUE_APP_REMOTE_API}/api/search/${cityName}`, {
+        method: 'GET',
+        headers: {
+          
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+          
+        }
+      })
+      .then((response) => {
+        console.log('contact');
+        return response.json();
+      })
+      .then((json) => {
+        console.log(json);
+        this.landmarkArray = json;
+        console.log(this.landmarkArray);
+       
+      })
+      .catch((err) => console.error(err));
+    }
+  }
+  }
+
 </script>
 
 <style>
@@ -50,5 +86,8 @@ export default {
     justify-content: center;
     align-self: center;
     color:#99ff94
+  }
+  h1{
+    color:white;
   }
 </style>
