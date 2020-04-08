@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,10 +48,10 @@ public class ApiController {
         return "Success";
     }
     
-
-	@GetMapping(path="/search", produces = "application/json")
-	public List<Location> searchLocations() {	
+   
+	@GetMapping(path="/search/{cityName}", produces = "application/json")
+	public List<Location> searchLocations(@PathVariable String cityName) {	
 		
-	return dao.getAllLocations();
+	return dao.retrieveLocationsByCityName(cityName);
 	}
 }
