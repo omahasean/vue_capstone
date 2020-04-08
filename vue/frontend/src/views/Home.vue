@@ -1,6 +1,7 @@
 <template>
 
   <div id="homePage" class="home">
+    <Navbar/>
     <Sidebar/>
     <div class="content-home">
     <h1>City Tours</h1>
@@ -20,9 +21,11 @@
 
 <script>
 import Sidebar from './Sidebar';
+import Navbar from './Navbar';
 export default {
   name: 'home',
   components: {
+    Navbar,
     Sidebar
   },
   data() {

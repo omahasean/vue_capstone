@@ -24,7 +24,7 @@ export default {
   z-index: 1; /* Stay on top */
   top: 0; /* Stay at the top */
   left: 0;
-  background-color: #111; /* Black */
+  background-color: #2e2e2e ; /* Black */
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 50px;
 }
