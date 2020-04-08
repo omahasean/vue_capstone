@@ -1,17 +1,20 @@
 <template>
   <div class="container">
+    <div id="form=box">
     <h2>Start Your Own Tour</h2>
       <form class="form">
             <input type="text"  class="search" placeholder="Please Enter a City" v-model.trim="cityName"/>
             <!-- <input type="submit" class="button" value="submit" @click="searchCity"> -->
-           <button class="button" @click="searchCity">Submit</button>
-
-           
-
+           <button class="button" type="button" @click="searchCity">Submit</button>
       </form>
       <hr id="line">
+    </div>
+  <div class="results">
+    <ul>
+      <li v-for="landmark in landmarkArray" :key="landmark.zipCode">{{landmark.name}} {{landmark.streetAddress}}, {{landmark.city}} {{landmark.zipCode}}</li>
+    </ul>    
   </div>
-
+  </div>
 </template>
 
 <script>
@@ -26,8 +29,8 @@ data() {
   }
 },
 methods: {
-  searchCity(cityName) {
-      fetch(`${process.env.VUE_APP_REMOTE_API}/api/search/${cityName}`, {
+  searchCity() {
+      fetch(`${process.env.VUE_APP_REMOTE_API}/api/search/${this.cityName}`, {
         method: 'GET',
         headers: {
           
@@ -43,7 +46,7 @@ methods: {
       .then((json) => {
         console.log(json);
         this.landmarkArray = json;
-        console.log(this.landmarkArray);
+        
        
       })
       .catch((err) => console.error(err));
@@ -87,7 +90,7 @@ methods: {
     align-self: center;
     color:#99ff94
   }
-  h1{
+  .results{
     color:white;
   }
 </style>
