@@ -22,7 +22,7 @@ public class JDBCLocationsDAOTest  extends DAOIntegrationTest {
 	public void retrieveLocationsByZipCodeTest() {
 		List<Location> daoList = dao.retrieveLocationsByZipCode("43219");
 		
-		Location testLocal = new Location(43219, "Easton Town Center", "160 Easton Town Ctr", "Columbus");
+		Location testLocal = new Location(43219, "Easton Town Center", "160 Easton Town Ctr", "Columbus", "Ohio", "Easton Town Center is an indoor and outdoor shopping complex in northeast Columbus, Ohio. The core buildings and streets that comprise Easton are intended to look like a self-contained town, reminiscent of American towns and cities in the early-to-mid 20th century. Included in the design are fountains, streets laid out in a grid pattern surrounded by a continuous loop, and metered storefront parking.", 82.9145, 40.05081);
 		
 		assertLocationsEqual(testLocal, daoList.get(0));
 		
