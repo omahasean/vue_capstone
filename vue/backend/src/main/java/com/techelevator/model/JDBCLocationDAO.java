@@ -40,7 +40,7 @@ public class JDBCLocationDAO implements LocationDAO {
 			String description = results.getString("description");
 			double longitude = results.getDouble("longitude");
 			double latitude = results.getDouble("latitude");
-			Location local = new Location(zip, name, address, city, state, description, longitude, latitude);
+			Location local = new Location(zip, name, address, city, state, description, latitude, longitude);
 			locations.add(local);
 		}
 
@@ -64,7 +64,7 @@ public class JDBCLocationDAO implements LocationDAO {
 			String description = results.getString("description");
 			double longitude = results.getDouble("longitude");
 			double latitude = results.getDouble("latitude");
-			Location local = new Location(zip, name, address, city, state, description, longitude, latitude);
+			Location local = new Location(zip, name, address, city, state, description, latitude, longitude);
 			locations.add(local);
 		}
 
@@ -92,7 +92,7 @@ public class JDBCLocationDAO implements LocationDAO {
 			String description = results.getString("description");
 			double longitude = results.getDouble("longitude");
 			double latitude = results.getDouble("latitude");
-			Location local = new Location(zip, name, address, city, state, description, longitude, latitude);
+			Location local = new Location(zip, name, address, city, state, description, latitude, longitude);
 			locations.add(local);
 		}
 

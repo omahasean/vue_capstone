@@ -2,9 +2,11 @@ package com.techelevator.controller;
 
 import com.techelevator.authentication.AuthProvider;
 import com.techelevator.authentication.UnauthorizedException;
+import com.techelevator.model.DistanceCalculator;
 import com.techelevator.model.Location;
 import com.techelevator.model.LocationDAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +53,23 @@ public class ApiController {
    
 	@GetMapping(path="/search/{cityName}", produces = "application/json")
 	public List<Location> searchLocations(@PathVariable String cityName) {	
+	
+	Location cityCoordinate = new Location(43223, "Central Columbus", "Center", "Columbus", "OH", "Columbuscenter", 39.9612, 82.9988);
+	//distance from point on map
+	int radiusFromPoint = 5;
+	
+	List<Location> allLocals = dao.retrieveLocationsByCityName(cityName);
+	
+	List<Location> refinedList =  new ArrayList<Location>();
+	
+	for(Location n: allLocals) {
+		DistanceCalculator distCalc = new DistanceCalculator(cityCoordinate.getLatitude(), cityCoordinate.getLongitutde(), n.getLatitude(), n.getLongitutde(), "M");
+		if(distCalc.getDistanceBetween()<=radiusFromPoint) {
+			refinedList.add(n);
+		}
+	}
+	
 		
-	return dao.retrieveLocationsByCityName(cityName);
+	return refinedList;
 	}
 }
