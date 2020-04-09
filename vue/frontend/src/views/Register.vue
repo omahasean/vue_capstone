@@ -1,4 +1,6 @@
 <template>
+<div>
+  <Navbar />
   <div id="register" class="text-center">
     <div class="backgroundimage">
     <form class="form-register" @submit.prevent="register">
@@ -42,12 +44,17 @@
     </form>
   </div>
   </div>
+  </div>
 </template>
 
 <script>
+import Navbar from './Navbar'
+
 export default {
   name: 'register',
-  
+  components: {
+    Navbar
+  },
   data() {
     return {
       user: {
