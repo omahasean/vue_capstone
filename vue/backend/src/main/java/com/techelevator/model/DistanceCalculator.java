@@ -13,17 +13,21 @@ public class DistanceCalculator {
 	//where "K" is Kilometers and "N" is Nautical Miles.
 	private String unitOfMeasure;
 	
+	private double distanceBetween;
+
+
 	public DistanceCalculator(double lat1, double lon1, double lat2, double lon2, String unitOfMeasure) {
 		super();
 		this.lat1 = lat1;
 		this.lon1 = lon1;
 		this.lat2 = lat2;
 		this.lon2 = lon2;
-		this.unitOfMeasure = unitOfMeasure;
+		this.unitOfMeasure = unitOfMeasure;	
+		this.distanceBetween = calculateDistance(lat1, lon1, lat2, lon2, unitOfMeasure);
 	}
 
 	
-	public double calculateDistance(double lat1, double lon1, double lat2, double lon2, String unit) {
+	private double calculateDistance(double lat1, double lon1, double lat2, double lon2, String unit) {
 		if ((lat1 == lat2) && (lon1 == lon2)) {
 			return 0;
 		} else {
@@ -65,6 +69,10 @@ public class DistanceCalculator {
 
 	public String getUnitOfMeasure() {
 		return unitOfMeasure;
+	}
+
+	public double getDistanceBetween() {
+		return distanceBetween;
 	}
 }
 

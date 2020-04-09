@@ -29,7 +29,7 @@ public class Location {
 	}
 
 	
-	public Location(int zipCode, String name, String streetAddress, String city, String state, String description, double longitude, double latitude) {
+	public Location(int zipCode, String name, String streetAddress, String city, String state, String description, double latitude, double longitude) {
 		super();
 		this.zipCode = zipCode;
 		this.name = name;
