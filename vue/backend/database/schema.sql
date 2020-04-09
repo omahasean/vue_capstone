@@ -12,10 +12,15 @@ CREATE TABLE users (
 );
 
 CREATE TABLE landmarks (
-  name varchar(255) PRIMARY KEY NOT NULL,
+  id serial PRIMARY KEY,
+  name varchar(255) NOT NULL,
   address varchar(255) NOT NULL,
   zipcode integer NOT NULL,
-  city varchar(255)
+  city varchar(255) NOT NULL,
+  state varchar(255) NOt NULL,
+  Latitude integer NOT NULL,
+  Longitude Integer NOT NULL,
+  Description varchar(255) NOT NULL
 );
 
 COMMIT TRANSACTION;
