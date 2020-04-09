@@ -1,7 +1,8 @@
 <template>
   <div id="register" class="text-center">
+    <div class="backgroundimage">
     <form class="form-register" @submit.prevent="register">
-      <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Create An Account</h1>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         There were problems registering this user.
       </div>
@@ -35,16 +36,18 @@
       <router-link :to="{ name: 'login' }">
         Have an account?
       </router-link>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">
+      <button class="createbutton" type="submit">
         Create Account
       </button>
     </form>
+  </div>
   </div>
 </template>
 
 <script>
 export default {
   name: 'register',
+  
   data() {
     return {
       user: {
@@ -81,4 +84,76 @@ export default {
 </script>
 
 <style>
+
+.backgroundimage{
+background-image: url(../assets/loginbackgroundcapstone.jpg);
+  /* background-size: 100%; */
+  background-repeat: no-repeat;
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  background-position: 50% 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.form-register {
+    display: flex;
+  /* width: 100%; */
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #005c75;
+  border-style: outset;
+  text-align:justify;
+  margin-left: 30%;
+  margin-right: 30%;
+}
+
+#confirmPassword {
+  width: 100%;
+  margin-top: 5%;
+  height: 30px;
+  border-style:inset;
+  border-color: #005c75;
+}
+
+.createbutton{
+font-size: 20px;
+width: 100%;
+justify-content: flex-end;
+border-radius: 12px;
+float: right;
+opacity: 0.6;
+background-color: #99ff94;
+}
+
+.createbutton:hover{
+  background-color: white;
+  color: #99ff94;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  opacity: 1.0;
+}
+
+.createbutton:active{
+  background-color: white;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+a:-webkit-any-link {
+  color: white;
+  font-size: 15px;
+}
+
+a:-webkit-any-link:hover{
+  font-size: 20px;
+}
+
+
+a:-webkit-any-link:visited {
+  color: #99ff94;
+}
+
 </style>
