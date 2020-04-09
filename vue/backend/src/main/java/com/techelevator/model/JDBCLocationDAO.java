@@ -75,6 +75,7 @@ public class JDBCLocationDAO implements LocationDAO {
 		SqlRowSet results = jdbcTemplate.queryForRowSet(queryString, cityName);
 		ArrayList<Location> locations = new ArrayList<Location>();
 		while (results.next()) {
+
 			int zip = results.getInt("zipcode");
 			String name = results.getString("name");
 			String address = results.getString("address");
@@ -82,6 +83,7 @@ public class JDBCLocationDAO implements LocationDAO {
 			Location local = new Location(zip, name, address, city);
 			locations.add(local);
 		}
+
 		return locations;
 	}
 
