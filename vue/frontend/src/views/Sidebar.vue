@@ -1,7 +1,7 @@
 <template>
     <div class="sidebar">
         <h1>City Tours</h1>
-        <SearchMap @sendSearch="recieveData"/>
+        <SearchMap @sendSearch="recieveData" @sendCity="sendCity"/>
         <ResultList :resultData="searchData"/>
     </div>
 </template>
@@ -19,14 +19,20 @@ export default {
 
     data() {
         return {
-            searchData : []
+            searchData : [],
+            userCity: ''
         }
     },
 
     methods: {
         recieveData(results) {
             this.searchData = results;
-            console.log(results);
+            //console.log(results);
+        },
+
+        sendCity(city){
+            this.userCity = city;
+            this.$emit('cityToHome', city);
         }
     }
 
