@@ -2,7 +2,8 @@
     <div class="sidebar">
         <h1>City Tours</h1>
         <SearchMap @sendSearch="recieveData" @sendCity="sendCity"/>
-        <ResultList :resultData="searchData"/>
+        <ResultList :resultData="searchData" @populateItenirary="listItenirary"/>
+        <Itenirary :iteniraryData="itenirary"/>
     </div>
 </template>
 
@@ -10,17 +11,21 @@
 <script>
 import SearchMap from "./SearchMap";
 import ResultList from "./ResultList";
+import Itenirary from './Itenirary';
+
 export default {
     name: 'Sidebar',
     components: {
         SearchMap,
-        ResultList
+        ResultList,
+        Itenirary
     },
 
     data() {
         return {
             searchData : [],
-            userCity: ''
+            userCity: '',
+            itenirary: []
         }
     },
 
@@ -33,6 +38,10 @@ export default {
         sendCity(city){
             this.userCity = city;
             this.$emit('cityToHome', city);
+        },
+
+        listItenirary(iteniraryArray) {
+            this.itenirary = iteniraryArray;
         }
     }
 
