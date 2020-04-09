@@ -1,9 +1,13 @@
 <template>
-  <ul>
+<div>
+  
+  <ul class="nav">
+   
       <li><a href="default.asp">Home</a></li>
       <li><a href="/login">Login</a></li>
       <li><a href="/register">Register</a></li>
   </ul>
+  </div>
 </template>
 
 <script>
@@ -13,7 +17,7 @@ export default {
 </script>
 
 <style>
-ul {
+.nav {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -24,13 +28,13 @@ ul {
   width: 100%;
 }
 
-li {
+.nav li {
   float: right;
   border-left: 1px solid #bbffb8;
   border-radius: 9px;
 }
 
-li a {
+.nav li a {
   display: block;
   color: white;
   text-align: center;
@@ -38,7 +42,10 @@ li a {
   text-decoration: none;
 }
 
-li a:hover {
+/* Change the link color to #111 (black) on hover */
+.nav li a:hover {
   background-color: #005c75;
 }
+
+
 </style>

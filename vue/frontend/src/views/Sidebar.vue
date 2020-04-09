@@ -1,16 +1,33 @@
 <template>
     <div class="sidebar">
-        <SearchMap/>
+        <h1>City Tours</h1>
+        <SearchMap @sendSearch="recieveData"/>
+        <ResultList :resultData="searchData"/>
     </div>
 </template>
 
 
 <script>
 import SearchMap from "./SearchMap";
+import ResultList from "./ResultList";
 export default {
     name: 'Sidebar',
     components: {
-        SearchMap
+        SearchMap,
+        ResultList
+    },
+
+    data() {
+        return {
+            searchData : []
+        }
+    },
+
+    methods: {
+        recieveData(results) {
+            this.searchData = results;
+            console.log(results);
+        }
     }
 
 }
@@ -26,7 +43,15 @@ export default {
   left: 0;
   background-color: #2e2e2e ; /* Black */
   overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 50px;
+  padding-top: 10px;
+}
+
+h1 {
+  color: white;
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  margin-top:0;
 }
 
 
