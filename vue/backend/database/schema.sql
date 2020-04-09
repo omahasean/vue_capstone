@@ -18,9 +18,9 @@ CREATE TABLE landmarks (
   zipcode integer NOT NULL,
   city varchar(255) NOT NULL,
   state varchar(255) NOt NULL,
-  Latitude integer NOT NULL,
-  Longitude Integer NOT NULL,
-  Description varchar(255) NOT NULL
+  Latitude decimal NOT NULL,
+  Longitude decimal NOT NULL,
+  Description varchar(550) NOT NULL
 );
 
 COMMIT TRANSACTION;
