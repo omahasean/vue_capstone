@@ -27,6 +27,11 @@ public class Location {
 	public Location() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Location(double latitude, double longitude) {
+		this.latitude = latitude;
+		this.longitutde = longitude;
+	}
 
 	
 	public Location(int zipCode, String name, String streetAddress, String city, String state, String description, double latitude, double longitude) {

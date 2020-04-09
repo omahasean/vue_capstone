@@ -40,14 +40,14 @@ data() {
     landmarkArray: [],
     radius: 0,
     location: {
-      long: 0,
+      lon: 0,
       lat: 0
     }
   }
 },
 methods: {
   searchCity() {
-      fetch(`${process.env.VUE_APP_REMOTE_API}/api/search/${this.cityName}`, {
+      fetch(`${process.env.VUE_APP_REMOTE_API}/api/search/${this.location.lat}/${this.location.lon}/${this.radius}`, {
         method: 'GET',
         headers: {
           
@@ -86,9 +86,9 @@ methods: {
         return response.json();
       })
       .then((json) => {
-        this.location.lat = json.latt;
-        this.location.long = json.longt;
-        console.log(this.location.long);
+        this.location.lat = Math.abs(json.latt);
+        this.location.lon = Math.abs(json.longt);
+        console.log(`${this.location.lon}`+ ' ' + `${this.location.lat}`);
       })
       .catch((err) => console.log(err));
     }

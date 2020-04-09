@@ -51,14 +51,14 @@ public class ApiController {
     }
     
    
-	@GetMapping(path="/search/{cityName}", produces = "application/json")
-	public List<Location> searchLocations(@PathVariable String cityName) {	
+	@GetMapping(path="/search/{lat}/{lon}/{radius}", produces = "application/json")
+	public List<Location> searchLocations(@PathVariable double lat, @PathVariable double lon, @PathVariable int radius) {	
 	
-	Location cityCoordinate = new Location(43223, "Central Columbus", "Center", "Columbus", "OH", "Columbuscenter", 39.9612, 82.9988);
+	Location cityCoordinate = new Location(lat, lon);
 	//distance from point on map
-	int radiusFromPoint = 5;
+	int radiusFromPoint = radius;
 	
-	List<Location> allLocals = dao.retrieveLocationsByCityName(cityName);
+	List<Location> allLocals = dao.getAllLocations();
 	
 	List<Location> refinedList =  new ArrayList<Location>();
 	
