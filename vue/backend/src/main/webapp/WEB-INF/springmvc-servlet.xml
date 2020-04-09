@@ -35,9 +35,9 @@
 		</mvc:interceptor>
 	</mvc:interceptors> 
 	
-	<mvc:cors>
+	<!--  <mvc:cors>
 		<mvc:mapping path="/**" allowed-methods="*"/>
-	</mvc:cors> 
+	</mvc:cors> -->
 
 	<!-- This view resolver contains logic for translating a logical view name
 		(e.g. "homePage") into a JSP file path (e.g. "/WEB-INF/jsp/homePage.jsp") -->
