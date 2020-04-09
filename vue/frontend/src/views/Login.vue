@@ -126,6 +126,7 @@ background-image: url(../assets/loginbackgroundcapstone.jpg);
   text-align:justify;
   margin-left: 30%;
   margin-right: 30%;
+  margin-top: 10%;
 
 }
 
