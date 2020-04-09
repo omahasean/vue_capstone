@@ -7,7 +7,7 @@
     </div> 
     <hr id="line">
 </div>
-<button type="button" @click="addItenirary">Create Itenirary</button>
+<button type="button" @click="addItenirary">Create Itinerary</button>
 </div>
 </template>
 

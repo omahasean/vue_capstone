@@ -16,7 +16,7 @@
            </select>
            </div>
 
-           <button class="button" type="button" @click="searchCity(); sendCity();" >Submit</button>
+           <button class="button" type="button" @click="searchCity(); sendCity(); getCoordinates()" >Submit</button>
            <!-- <button class="button" type="button" @click="$emit('passInofrmation')">Submit</button> -->
       </form>
       <hr id="line">
@@ -38,7 +38,11 @@ data() {
   return {
     cityName: '',
     landmarkArray: [],
-    radius: 0
+    radius: 0,
+    location: {
+      long: 0,
+      lat: 0
+    }
   }
 },
 methods: {
@@ -68,6 +72,25 @@ methods: {
     sendCity(){
       this.$emit('sendCity', this.cityName.toLowerCase());
       
+    },
+
+    getCoordinates() {
+      fetch(`https://geocode.xyz/?locate=${this.cityName}&geoit=JSON&auth=629009026059708430417x5389`, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          
+        }
+      })
+      .then((response) => {
+        return response.json();
+      })
+      .then((json) => {
+        this.location.lat = json.latt;
+        this.location.long = json.longt;
+        console.log(this.location.long);
+      })
+      .catch((err) => console.log(err));
     }
   }
   }
