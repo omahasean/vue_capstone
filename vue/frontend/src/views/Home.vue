@@ -4,15 +4,9 @@
     <Navbar/>
     <Sidebar/>
     <div class="content-home">
-    <h1>City Tours</h1>
-      
-    <button @click="displayMap">Submit</button>
-    <!-- <button @click="getLocations">Submit</button> -->
-   
-    <button @click="getCoordinates">GetCoordinates</button>
-    <!-- <button @click="showMap">Map</button> -->
+  
     <img v-bind:src=" imageSrc.src1 ">
-    <option v-for="(landmarkObject, index) in landmarkArray" v-bind:value="index" v-bind:key="index">{{ landmarkObject.name }}</option>
+    
     
     </div>
   </div>
@@ -89,7 +83,11 @@ const city = 'columbus';
 </script>
 
 <style scoped>
-  .content-home{
+  /* .content-home{
    margin-left:310px
+  } */
+
+  img {
+    margin: 0;
   }
 </style>

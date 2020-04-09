@@ -5,13 +5,25 @@
       <form class="form">
             <input type="text"  class="search" placeholder="Please Enter a City" v-model.trim="cityName"/>
             <!-- <input type="submit" class="button" value="submit" @click="searchCity"> -->
+           
+           <div id="list">
+           
+           <select v-model.number="radius">
+             <option disabled value="">Miles away</option>
+             <option value="5">5</option>
+             <option value="10">10</option>
+             <option value="25">25</option>
+           </select>
+           </div>
+
            <button class="button" type="button" @click="searchCity">Submit</button>
+           <!-- <button class="button" type="button" @click="$emit('passInofrmation')">Submit</button> -->
       </form>
       <hr id="line">
     </div>
   <div class="results">
     <ul>
-      <li v-for="landmark in landmarkArray" :key="landmark.zipCode">{{landmark.name}} {{landmark.streetAddress}}, {{landmark.city}} {{landmark.zipCode}}</li>
+      <li v-for="(landmark, index) in landmarkArray" :key="index">{{landmark.name}} {{landmark.streetAddress}}, {{landmark.city}} {{landmark.zipCode}}</li>
     </ul>    
   </div>
   </div>
@@ -25,7 +37,8 @@ export default {
 data() {
   return {
     cityName: '',
-    landmarkArray: []
+    landmarkArray: [],
+    radius: 0
   }
 },
 methods: {
@@ -40,12 +53,12 @@ methods: {
         }
       })
       .then((response) => {
-        console.log('contact');
         return response.json();
       })
       .then((json) => {
         console.log(json);
-        this.landmarkArray = json;
+        // this.landmarkArray = json;
+        this.$emit('sendSearch', json);
         
        
       })
@@ -66,6 +79,7 @@ methods: {
     grid-template-rows: auto;
     grid-template-areas:
       ". search ."
+      ". radius ."
       ". button ."
 }
   .search{
@@ -77,6 +91,7 @@ methods: {
   .button{
     grid-area: button;
     width: 100%;
+    height: 20%;
     padding-bottom: 30px;
   }
   #line{
@@ -92,5 +107,10 @@ methods: {
   }
   .results{
     color:white;
+  }
+
+  #list {
+    grid-area: radius;
+    color: white;
   }
 </style>
