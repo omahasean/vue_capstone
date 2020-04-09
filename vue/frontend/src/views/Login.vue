@@ -1,4 +1,6 @@
 <template>
+<div>
+  <Navbar />
   <div id="login" class="text-center">
     <div class="backgroundimage">
     <form class="form-signin" @submit.prevent="login">
@@ -38,14 +40,18 @@
     </form>
   </div>
   </div>
+</div>
 </template>
 
 <script>
 import auth from '../auth';
+import Navbar from './Navbar'
 
 export default {
   name: 'login',
-  components: {},
+  components: {
+    Navbar
+  },
   data() {
     return {
       user: {

@@ -16,7 +16,7 @@
            </select>
            </div>
 
-           <button class="button" type="button" @click="searchCity">Submit</button>
+           <button class="button" type="button" @click="searchCity(); sendCity();" >Submit</button>
            <!-- <button class="button" type="button" @click="$emit('passInofrmation')">Submit</button> -->
       </form>
       <hr id="line">
@@ -56,13 +56,18 @@ methods: {
         return response.json();
       })
       .then((json) => {
-        console.log(json);
+        //console.log(json);
         // this.landmarkArray = json;
         this.$emit('sendSearch', json);
         
        
       })
       .catch((err) => console.error(err));
+    },
+
+    sendCity(){
+      this.$emit('sendCity', this.cityName.toLowerCase());
+      
     }
   }
   }
