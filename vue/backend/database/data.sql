@@ -6,6 +6,7 @@ INSERT INTO users ("username", "password", "salt", "role") VALUES
 'user');
 
 
+<<<<<<< HEAD
 INSERT INTO landmarks("name", "address", "zipcode", "city", "state", "latitude", "longitude", "description")
 VALUES ('Easton Town Center', '160 Easton Town Ctr', 43219, 'Columbus', 'Ohio', 40.050810, 82.914500, 'Easton Town Center is an indoor and outdoor shopping complex in northeast Columbus, Ohio. The core buildings and streets that comprise Easton are intended to look like a self-contained town, reminiscent of American towns and cities in the early-to-mid 20th century. Included in the design are fountains, streets laid out in a grid pattern surrounded by a continuous loop, and metered storefront parking.'),
        ('Ohio Statehouse', '1 Capitol Sq', 43215, 'Columbus', 'Ohio', 39.9614, 82.9991, 'The Ohio Statehouse is the state capitol building and seat of government for the U.S. state of Ohio. The Greek Revival building is located on Capitol Square in downtown Columbus. The capitol houses the Ohio General Assembly, consisting of the House of Representatives and the Senate.[2] It also contains the ceremonial offices of the governor,[2] lieutenant governor, state treasurer,[3] and state auditor.[4] Built between 1839 and 1861, it is one of the oldest working statehouses in the United States.' ),
@@ -13,3 +14,9 @@ VALUES ('Easton Town Center', '160 Easton Town Ctr', 43219, 'Columbus', 'Ohio', 
        ('Lucas Oil Stadium', '500 South Capitol Avenue', 46225, 'Indianapolis', 39.7601, 86.1639, 'Lucas Oil Stadium is a multi-purpose stadium in Downtown Indianapolis, Indiana, United States. It replaced the RCA Dome as the home field of the NFLs Indianapolis Colts and opened on August 16, 2008.[11] The stadium was constructed to allow the removal of the RCA Dome and expansion of the Indiana Convention Center on its site.'),
        ('Rock and Roll Hall of Fame', '1100 Rock and Roll Boulevard', 44114, 'Cleveland', 41.5085, 81.6954, 'The Rock and Roll Hall of Fame is a museum and hall of fame located in downtown Cleveland, Ohio, on the shore of Lake Erie. The museum documents the history of rock music and the artists, producers, engineers, and other notable figures who have influenced its development.');
 
+=======
+INSERT INTO landmarks("name", "address", "zipcode", "city")
+VALUES ('Easton Town Center', '160 Easton Town Ctr', 43219, 'Columbus'),
+       ('Ohio Statehouse', '1 Capitol Sq', 43215, 'Columbus'),
+       ('Nationwide Arena', '200 W Nationwide Blvd', 43215, 'Columbus');
+>>>>>>> 2446d8ca812fbac4e785e38cbb2653b8de24fc39
