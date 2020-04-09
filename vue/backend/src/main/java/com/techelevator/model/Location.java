@@ -13,19 +13,25 @@ public class Location {
 	
 	private String city;
 	
-
+	private double longitude;
+	
+	private double latitude;
+	
+	private String description;
 	
 	public Location() {
 		// TODO Auto-generated constructor stub
 	}
 
 	
-	public Location(int zipCode, String name, String streetAddress, String city) {
+	public Location(int zipCode, String name, String streetAddress, String city, double latitude, double longitude) {
 		super();
 		this.zipCode = zipCode;
 		this.name = name;
 		this.streetAddress = streetAddress;
 		this.city = city;
+		this.longitude = longitude;
+		this.latitude = latitude;
 	}
 	
 	
@@ -63,6 +69,21 @@ public class Location {
 
 	public void setStreetAddress(String streetAddress) {
 		this.streetAddress = streetAddress;
+	}
+
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+
+	public double getLatitude() {
+		return latitude;
+	}
+
+
+	public String getDescription() {
+		return description;
 	}
 
 
