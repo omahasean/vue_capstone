@@ -13,6 +13,15 @@ public class Location {
 	
 	private String city;
 	
+	private String state;
+	
+	private double latitude;
+	
+	private double longitutde;
+	
+	private String description;
+	
+	
 
 	
 	public Location() {
@@ -20,12 +29,16 @@ public class Location {
 	}
 
 	
-	public Location(int zipCode, String name, String streetAddress, String city) {
+	public Location(int zipCode, String name, String streetAddress, String city, String state, String description, double longitude, double latitude) {
 		super();
 		this.zipCode = zipCode;
 		this.name = name;
 		this.streetAddress = streetAddress;
 		this.city = city;
+		this.state = state;
+		this.description = description;
+		this.latitude = latitude;
+		this.longitutde = longitude;
 	}
 	
 	
@@ -63,6 +76,46 @@ public class Location {
 
 	public void setStreetAddress(String streetAddress) {
 		this.streetAddress = streetAddress;
+	}
+
+
+	public String getState() {
+		return state;
+	}
+
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+
+	public double getLatitude() {
+		return latitude;
+	}
+
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+
+	public double getLongitutde() {
+		return longitutde;
+	}
+
+
+	public void setLongitutde(double longitutde) {
+		this.longitutde = longitutde;
+	}
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 
