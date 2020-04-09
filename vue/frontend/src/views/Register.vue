@@ -103,12 +103,19 @@ background-image: url(../assets/loginbackgroundcapstone.jpg);
     display: flex;
   /* width: 100%; */
   flex-wrap: wrap;
-  justify-content: center;
   background-color: #005c75;
   border-style: outset;
   text-align:justify;
   margin-left: 30%;
   margin-right: 30%;
+}
+
+#username {
+  font-size: 15px;
+}
+
+#password {
+  font-size: 15px;
 }
 
 #confirmPassword {
@@ -117,6 +124,7 @@ background-image: url(../assets/loginbackgroundcapstone.jpg);
   height: 30px;
   border-style:inset;
   border-color: #005c75;
+  font-size: 15px;
 }
 
 .createbutton{
