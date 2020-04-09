@@ -45,24 +45,6 @@ export default {
     }
   },
   methods: {
-<<<<<<< HEAD
-=======
-    getCoordinates() {
-     fetch(`http://dev.virtualearth.net/REST/v1/Locations/US/WA/Redmond/1%20Microsoft%20Way?&key=${apiKey}`, {
-       method: 'GET'
-     })
-     .then((response) => {
-       return response.json();
-     })
-     .then((json) => {
-       console.log(json);
-      this.temp = json;
-      console.log(this.temp);
-      //this.location.longitude = json.
-     })
-     .catch((err) => console.log(err));
-   },
->>>>>>> 2446d8ca812fbac4e785e38cbb2653b8de24fc39
     displayMap() {
       fetch(`${dummyURL}${apiKey}`, {
         method: 'GET'

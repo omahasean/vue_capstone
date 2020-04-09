@@ -36,7 +36,11 @@ public class JDBCLocationDAO implements LocationDAO {
 			String name = results.getString("name");
 			String address = results.getString("address");
 			String city = results.getString("city");
-			Location local = new Location(zip, name, address, city);
+			String state = results.getString("state");
+			String description = results.getString("description");
+			double longitude = results.getDouble("longitude");
+			double latitude = results.getDouble("latitude");
+			Location local = new Location(zip, name, address, city, state, description, longitude, latitude);
 			locations.add(local);
 		}
 
@@ -56,7 +60,11 @@ public class JDBCLocationDAO implements LocationDAO {
 			String name = results.getString("name");
 			String address = results.getString("address");
 			String city = results.getString("city");
-			Location local = new Location(zip, name, address, city);
+			String state = results.getString("state");
+			String description = results.getString("description");
+			double longitude = results.getDouble("longitude");
+			double latitude = results.getDouble("latitude");
+			Location local = new Location(zip, name, address, city, state, description, longitude, latitude);
 			locations.add(local);
 		}
 
@@ -80,7 +88,11 @@ public class JDBCLocationDAO implements LocationDAO {
 			String name = results.getString("name");
 			String address = results.getString("address");
 			String city = results.getString("city");
-			Location local = new Location(zip, name, address, city);
+			String state = results.getString("state");
+			String description = results.getString("description");
+			double longitude = results.getDouble("longitude");
+			double latitude = results.getDouble("latitude");
+			Location local = new Location(zip, name, address, city, state, description, longitude, latitude);
 			locations.add(local);
 		}
 

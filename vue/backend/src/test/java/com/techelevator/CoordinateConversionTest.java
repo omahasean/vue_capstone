@@ -19,8 +19,8 @@ public class CoordinateConversionTest {
 	
 	@Test
 	public void convertLocationDataToMilesTest() {
-		Location pointA = new Location(43562, "PlaceA", "123 Main St", "Columbus", 39.9692, 83.0060);
-		Location pointB = new Location(58234, "PlaceB", "421 High St", "Columbus", 39.9614, 82.9991);
+		Location pointA = new Location(43562, "PlaceA", "123 Main St", "Columbus","OH", null, 39.9692, 83.0060);
+		Location pointB = new Location(58234, "PlaceB", "421 High St", "Columbus","OH", null, 39.9614, 82.9991);
 		
 		double distanceExpected = 0.651086973809656;
 		
