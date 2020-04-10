@@ -122,6 +122,7 @@ methods: {
     width: 100%;
     height: 20%;
     padding-bottom: 30px;
+    font-family: 'Lobster', cursive;
   }
   #line{
     margin-top: 1em;
@@ -132,7 +133,8 @@ methods: {
     display: flex;
     justify-content: center;
     align-self: center;
-    color:#99ff94
+    color:#99ff94;
+    font-family: 'Lobster', cursive;
   }
   .results{
     color:white;

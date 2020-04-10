@@ -32,6 +32,7 @@ export default {
   float: right;
   border-left: 1px solid #bbffb8;
   border-radius: 9px;
+  font-family: 'Baloo Paaji 2', cursive;
 }
 
 .nav li a {
