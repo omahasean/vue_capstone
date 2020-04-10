@@ -43,6 +43,7 @@ export default {
 
         listItenirary(iteniraryArray) {
             this.itenirary = iteniraryArray;
+            this.$emit('sendItenirary', iteniraryArray);
         }
     }
 
