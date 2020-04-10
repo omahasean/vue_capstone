@@ -1,8 +1,8 @@
 <template>
 <div>
-<div id="result" v-for="(result, index) in resultData" :key="index">
+<div id="result" v-for="(result, index) in resultData" :key="index" v-bind:value="result">
     <div>
-    <h3> {{result.name}}</h3>
+    <router-link :to="{name:'details'}">{{result.name}}</router-link>
     <input type="checkbox" id="result.name"  v-bind:value="result" v-model="itenirary">
     </div> 
     <hr id="line">
@@ -22,13 +22,18 @@ export default {
     data() {
         return {
             itenirary: [],
-            checked: false
+            checked: false,
+            selected: []
         }
     },
 
     methods: {
         addItenirary() {
             this.$emit('populateItenirary', this.itenirary );
+        },
+        showDetails(){
+            
+            this.$emit('loadDetails', this.result)
         }
     },
 

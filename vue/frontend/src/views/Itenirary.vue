@@ -19,5 +19,7 @@ export default {
 </script>
 
 <style>
-
+h1{
+    font-family: 'Baloo Paaji 2', cursive;
+}
 </style>
