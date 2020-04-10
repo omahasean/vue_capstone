@@ -8,10 +8,10 @@
       <div>
       <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
       </div>
-      <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
+      <div class="invalidalert" role="alert" v-if="invalidCredentials">
         Invalid username and password!
       </div>
-      <div class="alert alert-success" role="alert" v-if="this.$route.query.registration">
+      <div class="thanksalert" role="alert" v-if="this.$route.query.registration">
         Thank you for registering, please sign in.
       </div>
       <label for="username" class="sr-only">Username</label>
@@ -97,7 +97,6 @@ export default {
 
 .backgroundimage{
 background-image: url(../assets/loginbackgroundcapstone.jpg);
-  /* background-size: 100%; */
   background-repeat: no-repeat;
   object-fit: cover;
   height: 100%;
@@ -116,9 +115,7 @@ background-image: url(../assets/loginbackgroundcapstone.jpg);
 }
 
 .form-signin{
-  grid-area: Fillin;
   display: flex;
-  /* width: 100%; */
   flex-wrap: wrap;
   justify-content: center;
   background-color: #005c75;
@@ -165,6 +162,22 @@ h1{
   width: 100%;
   color: white;
 
+}
+
+.invalidalert{
+  width: 100%;
+  color: #99ff94;
+  justify-content: center;
+  font-size: 20px;
+  text-align: center;
+}
+
+.thanksalert{
+  width: 100%;
+  color: #99ff94;
+  justify-content: center;
+  font-size: 20px;
+  text-align: center;
 }
 
 .accountcreate{
