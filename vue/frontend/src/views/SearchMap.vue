@@ -16,16 +16,16 @@
            </select>
            </div>
 
-           <button class="button" type="button" @click="searchCity(); sendCity(); getCoordinates()" >Submit</button>
+           <button class="button" type="button" @click="sendCity(); getCoordinates()" >Submit</button>
            <!-- <button class="button" type="button" @click="$emit('passInofrmation')">Submit</button> -->
       </form>
       <hr id="line">
     </div>
-  <div class="results">
+  <!-- <div class="results">
     <ul>
       <li v-for="(landmark, index) in landmarkArray" :key="index">{{landmark.name}} {{landmark.streetAddress}}, {{landmark.city}} {{landmark.zipCode}}</li>
     </ul>    
-  </div>
+  </div> -->
   </div>
 </template>
 
@@ -75,7 +75,7 @@ methods: {
     },
 
     getCoordinates() {
-      fetch(`https://geocode.xyz/?locate=${this.cityName}&geoit=JSON&auth=629009026059708430417x5389`, {
+      fetch(`https://geocode.xyz/?locate=${this.cityName}&geoit=JSON`, {
         method: 'GET',
         headers: {
           Accept: 'application/json',
@@ -89,6 +89,7 @@ methods: {
         this.location.lat = Math.abs(json.latt);
         this.location.lon = Math.abs(json.longt);
         console.log(`${this.location.lon}`+ ' ' + `${this.location.lat}`);
+        this.searchCity();
       })
       .catch((err) => console.log(err));
     }

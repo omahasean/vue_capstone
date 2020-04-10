@@ -24,7 +24,7 @@ public class CoordinateConversionTest {
 		
 		double distanceExpected = 0.651086973809656;
 		
-		DistanceCalculator distCalc = new DistanceCalculator(pointA.getLatitude(), pointA.getLongitutde(), pointB.getLatitude(), pointB.getLongitutde(), "M");
+		DistanceCalculator distCalc = new DistanceCalculator(pointA.getLatitude(), pointA.getLongitude(), pointB.getLatitude(), pointB.getLongitude(), "M");
 		
 		Assert.assertTrue(distanceExpected == distCalc.getDistanceBetween());
 	}

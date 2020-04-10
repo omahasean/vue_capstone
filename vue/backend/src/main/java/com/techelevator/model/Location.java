@@ -17,7 +17,7 @@ public class Location {
 	
 	private double latitude;
 	
-	private double longitutde;
+	private double longitude;
 	
 	private String description;
 	
@@ -30,7 +30,7 @@ public class Location {
 	
 	public Location(double latitude, double longitude) {
 		this.latitude = latitude;
-		this.longitutde = longitude;
+		this.longitude = longitude;
 	}
 
 	
@@ -43,7 +43,7 @@ public class Location {
 		this.state = state;
 		this.description = description;
 		this.latitude = latitude;
-		this.longitutde = longitude;
+		this.longitude = longitude;
 	}
 	
 	
@@ -104,13 +104,13 @@ public class Location {
 	}
 
 
-	public double getLongitutde() {
-		return longitutde;
+	public double getLongitude() {
+		return longitude;
 	}
 
 
-	public void setLongitutde(double longitutde) {
-		this.longitutde = longitutde;
+	public void setLongitutde(double longitude) {
+		this.longitude = longitude;
 	}
 
 

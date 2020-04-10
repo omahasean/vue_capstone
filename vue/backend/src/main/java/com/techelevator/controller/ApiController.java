@@ -63,7 +63,7 @@ public class ApiController {
 	List<Location> refinedList =  new ArrayList<Location>();
 	
 	for(Location n: allLocals) {
-		DistanceCalculator distCalc = new DistanceCalculator(cityCoordinate.getLatitude(), cityCoordinate.getLongitutde(), n.getLatitude(), n.getLongitutde(), "M");
+		DistanceCalculator distCalc = new DistanceCalculator(cityCoordinate.getLatitude(), cityCoordinate.getLongitude(), n.getLatitude(), n.getLongitude(), "M");
 		if(distCalc.getDistanceBetween()<=radiusFromPoint) {
 			refinedList.add(n);
 		}
