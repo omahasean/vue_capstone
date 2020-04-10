@@ -1,6 +1,6 @@
 <template>
     <div class="sidebar">
-        <h1>City Tours</h1>
+        <h1 id="Logo">City Tours</h1>
         <SearchMap @sendSearch="recieveData" @sendCity="sendCity"/>
         <ResultList :resultData="searchData" @populateItenirary="listItenirary"/>
         <Itenirary :iteniraryData="itenirary"/>
@@ -32,6 +32,7 @@ export default {
     methods: {
         recieveData(results) {
             this.searchData = results;
+            this.$emit('pushpins', results);
             //console.log(results);
         },
 
@@ -68,6 +69,8 @@ h1 {
   text-align: center;
   margin-top:0;
 }
-
+#Logo{
+    font-family: 'Lobster', cursive;
+}
 
 </style>

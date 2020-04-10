@@ -4,6 +4,8 @@ import auth from './auth'
 import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import Register from './views/Register.vue'
+import Detail from './views/Detail.vue'
+
 
 Vue.use(Router)
 
@@ -44,6 +46,14 @@ const router = new Router({
         requiresAuth: false
       }
     },
+    {
+      path: "/details",
+      name: "details",
+      component: Detail,
+      meta: {
+        requiresAuth: false
+      }
+    }
   ]
 })
 

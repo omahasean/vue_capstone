@@ -16,16 +16,16 @@
            </select>
            </div>
 
-           <button class="button" type="button" @click="searchCity(); sendCity();" >Submit</button>
+           <button class="button" type="button" @click="sendCity(); getCoordinates()" >Submit</button>
            <!-- <button class="button" type="button" @click="$emit('passInofrmation')">Submit</button> -->
       </form>
       <hr id="line">
     </div>
-  <div class="results">
+  <!-- <div class="results">
     <ul>
       <li v-for="(landmark, index) in landmarkArray" :key="index">{{landmark.name}} {{landmark.streetAddress}}, {{landmark.city}} {{landmark.zipCode}}</li>
     </ul>    
-  </div>
+  </div> -->
   </div>
 </template>
 
@@ -38,12 +38,17 @@ data() {
   return {
     cityName: '',
     landmarkArray: [],
-    radius: 0
+    radius: 0,
+    location: {
+      lon: 0,
+      lat: 0
+    },
+    pins: ''
   }
 },
 methods: {
   searchCity() {
-      fetch(`${process.env.VUE_APP_REMOTE_API}/api/search/${this.cityName}`, {
+      fetch(`${process.env.VUE_APP_REMOTE_API}/api/search/${this.location.lat}/${this.location.lon}/${this.radius}`, {
         method: 'GET',
         headers: {
           
@@ -57,7 +62,12 @@ methods: {
       })
       .then((json) => {
         //console.log(json);
-        // this.landmarkArray = json;
+        // this.pins = ''
+        // this.landmarkArray = json.map((e) => {
+        //   return `pp=${e.latitude},${e.longitude}`;
+        // });
+        // this.pins = this.landmarkArray.join('&');
+        // console.log(this.pins);
         this.$emit('sendSearch', json);
         
        
@@ -68,6 +78,26 @@ methods: {
     sendCity(){
       this.$emit('sendCity', this.cityName.toLowerCase());
       
+    },
+
+    getCoordinates() {
+      fetch(`https://geocode.xyz/?locate=${this.cityName}&geoit=JSON`, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          
+        }
+      })
+      .then((response) => {
+        return response.json();
+      })
+      .then((json) => {
+        this.location.lat = Math.abs(json.latt);
+        this.location.lon = Math.abs(json.longt);
+        console.log(`${this.location.lon}`+ ' ' + `${this.location.lat}`);
+        this.searchCity();
+      })
+      .catch((err) => console.log(err));
     }
   }
   }
@@ -98,6 +128,7 @@ methods: {
     width: 100%;
     height: 20%;
     padding-bottom: 30px;
+    font-family: 'Lobster', cursive;
   }
   #line{
     margin-top: 1em;
@@ -108,7 +139,8 @@ methods: {
     display: flex;
     justify-content: center;
     align-self: center;
-    color:#99ff94
+    color:#99ff94;
+    font-family: 'Lobster', cursive;
   }
   .results{
     color:white;

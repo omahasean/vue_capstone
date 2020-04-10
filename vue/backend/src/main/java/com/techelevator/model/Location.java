@@ -17,7 +17,7 @@ public class Location {
 	
 	private double latitude;
 	
-	private double longitutde;
+	private double longitude;
 	
 	private String description;
 	
@@ -27,9 +27,14 @@ public class Location {
 	public Location() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Location(double latitude, double longitude) {
+		this.latitude = latitude;
+		this.longitude = longitude;
+	}
 
 	
-	public Location(int zipCode, String name, String streetAddress, String city, String state, String description, double longitude, double latitude) {
+	public Location(int zipCode, String name, String streetAddress, String city, String state, String description, double latitude, double longitude) {
 		super();
 		this.zipCode = zipCode;
 		this.name = name;
@@ -38,7 +43,7 @@ public class Location {
 		this.state = state;
 		this.description = description;
 		this.latitude = latitude;
-		this.longitutde = longitude;
+		this.longitude = longitude;
 	}
 	
 	
@@ -99,13 +104,13 @@ public class Location {
 	}
 
 
-	public double getLongitutde() {
-		return longitutde;
+	public double getLongitude() {
+		return longitude;
 	}
 
 
-	public void setLongitutde(double longitutde) {
-		this.longitutde = longitutde;
+	public void setLongitutde(double longitude) {
+		this.longitude = longitude;
 	}
 
 
