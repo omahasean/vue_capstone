@@ -32,6 +32,7 @@ export default {
     methods: {
         recieveData(results) {
             this.searchData = results;
+            this.$emit('pushpins', results);
             //console.log(results);
         },
 

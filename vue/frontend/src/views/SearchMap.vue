@@ -42,7 +42,8 @@ data() {
     location: {
       lon: 0,
       lat: 0
-    }
+    },
+    pins: ''
   }
 },
 methods: {
@@ -61,7 +62,12 @@ methods: {
       })
       .then((json) => {
         //console.log(json);
-        // this.landmarkArray = json;
+        // this.pins = ''
+        // this.landmarkArray = json.map((e) => {
+        //   return `pp=${e.latitude},${e.longitude}`;
+        // });
+        // this.pins = this.landmarkArray.join('&');
+        // console.log(this.pins);
         this.$emit('sendSearch', json);
         
        
