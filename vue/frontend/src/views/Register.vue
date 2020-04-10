@@ -5,7 +5,7 @@
     <div class="backgroundimage">
     <form class="form-register" @submit.prevent="register">
       <h1 class="h3 mb-3 font-weight-normal">Create An Account</h1>
-      <div class="alert alert-danger" role="alert" v-if="registrationErrors">
+      <div class="registeralert" role="alert" v-if="registrationErrors">
         There were problems registering this user.
       </div>
       <label for="username" class="sr-only">Username</label>
@@ -120,6 +120,7 @@ background-image: url(../assets/loginbackgroundcapstone.jpg);
 
 #username {
   font-size: 15px;
+  color: black;
 }
 
 #password {
@@ -133,6 +134,14 @@ background-image: url(../assets/loginbackgroundcapstone.jpg);
   border-style:inset;
   border-color: #005c75;
   font-size: 15px;
+}
+
+.registeralert{
+  width: 100%;
+  color: #99ff94;
+  justify-content: center;
+  font-size: 20px;
+  text-align: center;
 }
 
 .createbutton{
