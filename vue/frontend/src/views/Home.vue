@@ -5,9 +5,9 @@
     <Sidebar @cityToHome="showNew" @pushpins="formatPins"/>
   <div id="home" class="content-home">
     
-    <!-- <img v-if="show === true" v-bind:src="showImage()"> -->
+    <img v-if="show === false" v-bind:src="showImage()">
     <!-- <img v-else v-bind:src=" imageSrc.src1 "> -->
-    <img v-bind:src="getPins()">
+    <img v-else v-bind:src="getPins()">
     
     </div>
    
@@ -68,7 +68,7 @@ export default {
     },
 
     showImage() {
-      return `https://dev.virtualearth.net/REST/v1/Imagery/Map/Road/${this.userCity}?mapSize=2000,1000&key=${apiKey}`
+      return `https://dev.virtualearth.net/REST/v1/Imagery/Map/Road/columbus?mapSize=2000,1000&key=${apiKey}`
     },
   
 
