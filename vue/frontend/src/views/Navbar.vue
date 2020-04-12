@@ -2,10 +2,10 @@
 <div>
   
   <ul class="nav">
-   
       <li><a href="/">Home</a></li>
       <li><a href="/login">Login</a></li>
       <li><a href="/register">Register</a></li>
+      <li class="Logo"><a href="/">City Tours</a></li>
   </ul>
   </div>
 </template>
@@ -26,6 +26,7 @@ export default {
   position: fixed;
   top: 0;
   width: 100%;
+  background-image: linear-gradient( to right, #2e2e2e, #2e2e2e, black)
 }
 
 .nav li {
@@ -42,11 +43,16 @@ export default {
   padding: 14px 16px;
   text-decoration: none;
 }
-
-/* Change the link color to #111 (black) on hover */
 .nav li a:hover {
   background-color: #005c75;
+  
 }
-
+.nav .Logo{
+  float: left;
+  font-family: 'Lobster', cursive;
+  font-size-adjust: 150px;
+  border: none;
+ 
+}
 
 </style>

@@ -119,6 +119,7 @@ background-image: url(../assets/loginbackgroundcapstone.jpg);
   flex-wrap: wrap;
   justify-content: center;
   background-color: #005c75;
+  opacity: 0.92;
   border-style: outset;
   text-align:justify;
   margin-left: 30%;
@@ -187,6 +188,8 @@ h1{
   width: 100%;
   justify-content: right;
   color: white;
+  margin-right: 4em;
+  margin-left: 4em;
 }
 
 
@@ -195,7 +198,6 @@ font-size: 20px;
 justify-content: flex-end;
 border-radius: 12px;
 float: right;
-opacity: 0.6;
 background-color: #99ff94;
 }
 
