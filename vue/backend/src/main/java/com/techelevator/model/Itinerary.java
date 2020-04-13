@@ -9,6 +9,11 @@ public class Itinerary {
 	private String name;
 	private int itineraryId;
 	
+	
+	public Itinerary() {
+		
+	}
+	
 	public Itinerary(ArrayList<Location> locationList) {
 		this.locationList = locationList;
 	}
@@ -20,6 +25,13 @@ public class Itinerary {
 		this.itineraryId=itineraryId;
 		this.locationList = new ArrayList<Location>();
 		this.name = itineraryName;
+	}
+	
+	public Itinerary (int itineraryId, String itineraryName, ArrayList<Location> locationList) {
+		this.itineraryId=itineraryId;
+		this.locationList = new ArrayList<Location>();
+		this.name = itineraryName;
+		this.locationList = locationList;
 	}
 
 	public ArrayList<Location> getLocationList() {

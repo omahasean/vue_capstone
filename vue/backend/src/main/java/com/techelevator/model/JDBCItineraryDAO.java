@@ -71,8 +71,39 @@ public class JDBCItineraryDAO implements ItineraryDAO{
 
 	@Override
 	public Itinerary getItineraryById(int itineraryId, int userId) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		String queryString = "SELECT * FROM itinerary\n" + 
+				"JOIN itinerary_landmarks ON itinerary.itinerary_id = itinerary_landmarks.itinerary_id\n" + 
+				"JOIN landmarks ON itinerary_landmarks.landmark_id = landmarks.landmark_id\n" + 
+				"WHERE itinerary.user_id = ? AND itinerary.itinerary_id = ?;";
+		
+		
+		SqlRowSet results = jdbcTemplate.queryForRowSet(queryString, userId, itineraryId);
+		
+		ArrayList<Location> locationList = new ArrayList<Location>();
+		
+		Itinerary newItin = new Itinerary();
+		
+		while(results.next()) {
+			newItin.setItineraryId(results.getInt("itinerary_id"));
+			newItin.setName(results.getString("itinerary_name"));
+
+			
+			int zip = results.getInt("zipcode");
+			String name = results.getString("landmark_name");
+			String address = results.getString("address");
+			String city = results.getString("city");
+			String state = results.getString("state");
+			String description = results.getString("description");
+			double longitude = results.getDouble("longitude");
+			double latitude = results.getDouble("latitude");
+			Location local = new Location(zip, name, address, city, state, description, latitude, longitude);
+			locationList.add(local);
+		}
+		
+		newItin.setLocationList(locationList);
+		
+		return newItin;
 	}
 
 }

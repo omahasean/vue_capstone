@@ -3,6 +3,8 @@ package com.techelevator.controller;
 import com.techelevator.authentication.AuthProvider;
 import com.techelevator.authentication.UnauthorizedException;
 import com.techelevator.model.DistanceCalculator;
+import com.techelevator.model.Itinerary;
+import com.techelevator.model.ItineraryDAO;
 import com.techelevator.model.Location;
 import com.techelevator.model.LocationDAO;
 
@@ -33,7 +35,10 @@ public class ApiController {
     private AuthProvider authProvider;
     
     @Autowired
-    private LocationDAO dao;
+    private LocationDAO locationDao;
+    
+    @Autowired
+    private ItineraryDAO itineraryDao;
     
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String authorizedOnly() throws UnauthorizedException {
@@ -58,7 +63,7 @@ public class ApiController {
 	//distance from point on map
 	int radiusFromPoint = radius;
 	
-	List<Location> allLocals = dao.getAllLocations();
+	List<Location> allLocals = locationDao.getAllLocations();
 	
 	List<Location> refinedList =  new ArrayList<Location>();
 	
@@ -72,4 +77,14 @@ public class ApiController {
 		
 	return refinedList;
 	}
+	
+	@GetMapping(path="/getUser/{userId}", produces="application/json")
+	public List<Itinerary> searchUserItineraries(@PathVariable int userId){
+		return itineraryDao.getAllItinerariesForUser(userId);
+	}
+	@GetMapping(path="/getUserItin/{userId}/{itineraryId}", produces="application/json")
+	public Itinerary getItineraryByItineraryId(@PathVariable int userId, @PathVariable int itineraryId){
+		return itineraryDao.getItineraryById(itineraryId, userId);
+	}
+	
 }
