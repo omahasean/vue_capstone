@@ -7,6 +7,7 @@ import com.techelevator.model.Itinerary;
 import com.techelevator.model.ItineraryDAO;
 import com.techelevator.model.Location;
 import com.techelevator.model.LocationDAO;
+import com.techelevator.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,6 +42,7 @@ public class ApiController {
     
     @Autowired
     private ItineraryDAO itineraryDao;
+
     
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String authorizedOnly() throws UnauthorizedException {
@@ -78,13 +82,15 @@ public class ApiController {
 	return refinedList;
 	}
 	
-	@GetMapping(path="/getUser/{userId}", produces="application/json")
-	public List<Itinerary> searchUserItineraries(@PathVariable int userId){
-		return itineraryDao.getAllItinerariesForUser(userId);
+	@PostMapping(path="/getUser/", produces="application/json")
+	public List<Itinerary> searchUserItineraries(@RequestBody User user){
+		System.out.println(user.getUsername());
+		return itineraryDao.getAllItinerariesForUser((int)user.getId());
 	}
-	@GetMapping(path="/getUserItin/{userId}/{itineraryId}", produces="application/json")
-	public Itinerary getItineraryByItineraryId(@PathVariable int userId, @PathVariable int itineraryId){
-		return itineraryDao.getItineraryById(itineraryId, userId);
+	@GetMapping(path="/getUserItin/{itineraryId}", produces="application/json")
+	public Itinerary getItineraryByItineraryId(@PathVariable int itineraryId){
+		User user = authProvider.getCurrentUser();
+		return itineraryDao.getItineraryById(itineraryId, (int)user.getId());
 	}
 	
 }

@@ -3,6 +3,7 @@
         <h1 class="Logo">City Tours</h1>
         <SearchMap @sendSearch="recieveData" @sendCity="sendCity"/>
         <ResultList :resultData="searchData" @populateItenirary="listItenirary"/>
+        <ItineraryList/>
         
         <Itenirary v-if="directions === false" :iteniraryData="itenirary"/>
        
@@ -19,6 +20,7 @@ import SearchMap from "./SearchMap";
 import ResultList from "./ResultList";
 import Itenirary from './Itenirary';
 import Directions from "./Directions";
+import ItineraryList from "./ItineraryList";
 
 export default {
     name: 'Sidebar',
@@ -26,7 +28,8 @@ export default {
         SearchMap,
         ResultList,
         Itenirary,
-        Directions
+        Directions,
+        ItineraryList
     },
 
     props: {
