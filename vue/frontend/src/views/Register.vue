@@ -116,6 +116,7 @@ background-image: url(../assets/loginbackgroundcapstone.jpg);
   margin-left: 30%;
   margin-right: 30%;
   margin-top: 10%;
+  border-color: white;
 }
 
 #username {
