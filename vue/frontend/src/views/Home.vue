@@ -2,7 +2,7 @@
 
   <div id="homePage" class="home">
     <Navbar/>
-    <Sidebar @cityToHome="showNew" @pushpins="formatPins" @sendItenirary="formatWP"/>
+    <Sidebar @cityToHome="showNew" @pushpins="formatPins" @sendItenirary="formatWP" :waypoints="wp"/>
   <div id="home" class="content-home">
     
     <img v-if="show === false" v-bind:src="showImage()">
