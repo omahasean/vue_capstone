@@ -85,7 +85,7 @@ public class JDBCLocationDAO implements LocationDAO {
 		while (results.next()) {
 
 			int zip = results.getInt("zipcode");
-			String name = results.getString("name");
+			String name = results.getString("landmark_name");
 			String address = results.getString("address");
 			String city = results.getString("city");
 			String state = results.getString("state");

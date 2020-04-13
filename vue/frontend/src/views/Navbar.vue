@@ -50,9 +50,8 @@ export default {
 .nav .Logo{
   float: left;
   font-family: 'Lobster', cursive;
-  font-size-adjust: 150px;
+  font-size: 60px;
   border: none;
- 
 }
 
 </style>
