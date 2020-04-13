@@ -7,8 +7,8 @@
             <!-- <input type="submit" class="button" value="submit" @click="searchCity"> -->
            
            <div id="list">
-           
-           <select v-model.number="radius">
+           <label for="radius" class="radius">Distance from: </label>
+           <select v-model.number="radius" class="radius">
              <option disabled value="">Miles away</option>
              <option value="5">5</option>
              <option value="10">10</option>
@@ -122,6 +122,8 @@ methods: {
     justify-self: center;
     width: 100%;
     margin-bottom: 1em;
+    font-size: 15px;
+    font-family: 'Lobster', cursive;
   }
   .button{
     grid-area: button;
@@ -149,5 +151,12 @@ methods: {
   #list {
     grid-area: radius;
     color: white;
+    font-family: 'Courier-Sans', sans-serif;
+    padding-bottom: 1em;
+    color:#99ff94;
+  }
+  .radius{
+    grid-area: radius;
+    padding-left: 1em;
   }
 </style>

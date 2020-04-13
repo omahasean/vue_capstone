@@ -2,12 +2,13 @@
 
   <div id="homePage" class="home">
     <Navbar/>
-    <Sidebar @cityToHome="showNew" @pushpins="formatPins"/>
+    <Sidebar @cityToHome="showNew" @pushpins="formatPins" @sendItenirary="formatWP"/>
   <div id="home" class="content-home">
     
     <img v-if="show === false" v-bind:src="showImage()">
     <!-- <img v-else v-bind:src=" imageSrc.src1 "> -->
-    <img v-else v-bind:src="getPins()">
+    <img v-else-if="wp.length === 0" v-bind:src="getPins()">
+    <img v-else v-bind:src="getWaypoints()">
     
     </div>
    
@@ -42,7 +43,10 @@ export default {
       show: false,
       userCity: '',
       pins: '',
-      pinsArray: []
+      pinsArray: [],
+      wpArray: [],
+      wp: ''
+      
     
     }
   },
@@ -80,7 +84,7 @@ export default {
           'Content-Type': 'text/plain; charset=utf-8' 
         },
           body: this.pins
-        // body: 'pp=38.889586530732335,-77.05010175704956;23;LM\r\npp=38.88772364638439,-77.0472639799118;7;KM\r\n'
+        
         
       })
       .then((response) => {
@@ -91,6 +95,7 @@ export default {
         let imageURL = URL.createObjectURL(blob);
         let img = document.createElement('img');
         img.src = imageURL;
+        
         document.getElementById('home').appendChild(img);
       })
       
@@ -103,6 +108,36 @@ export default {
       this.pins = '';
       this.pins = this.pinsArray.join('&');
       console.log(this.pins);
+    },
+
+    formatWP(iteniraryResults){
+      this.wpArray = iteniraryResults.map((e) => {
+          return `wp.${iteniraryResults.indexOf(e)+1}=${e.latitude},-${e.longitude}`;
+        });
+      this.wp = '';
+      this.wp = this.wpArray.join('&');
+      console.log(this.wp);
+     
+    },
+
+    getWaypoints() {
+      fetch(`https://dev.virtualearth.net/REST/v1/Imagery/Map/Road/Routes/?${this.wp}&mapSize=2000,1000&key=${apiKey}`, {
+        method: 'GET',
+
+        headers: {
+          'Content-Type': 'text/plain; charset=utf-8' 
+        }
+      })
+      .then((response) => {
+        console.log(response.type);
+        return response.blob();
+      })
+      .then((blob) => {
+        let imageURL = URL.createObjectURL(blob);
+        let img = document.createElement('img');
+        img.src = imageURL;
+        document.getElementById('home').appendChild(img);
+      })
     }
 
 }

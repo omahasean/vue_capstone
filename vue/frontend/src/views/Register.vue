@@ -111,6 +111,7 @@ background-image: url(../assets/loginbackgroundcapstone.jpg);
   /* width: 100%; */
   flex-wrap: wrap;
   background-color: #005c75;
+  opacity: 0.92;
   border-style: outset;
   text-align:justify;
   margin-left: 30%;
@@ -122,10 +123,14 @@ background-image: url(../assets/loginbackgroundcapstone.jpg);
 #username {
   font-size: 15px;
   color: black;
+  margin-right: 4em;
+  margin-left: 4em;
 }
 
 #password {
   font-size: 15px;
+  margin-right: 4em;
+  margin-left: 4em;
 }
 
 #confirmPassword {
@@ -135,6 +140,9 @@ background-image: url(../assets/loginbackgroundcapstone.jpg);
   border-style:inset;
   border-color: #005c75;
   font-size: 15px;
+  margin-right: 4em;
+  margin-left: 4em;
+  margin-bottom: 1em;
 }
 
 .registeralert{
@@ -153,6 +161,9 @@ border-radius: 12px;
 float: right;
 opacity: 0.6;
 background-color: #99ff94;
+margin-right: 5em;
+margin-left: 5em;
+margin-bottom: 1em;
 }
 
 .createbutton:hover{
@@ -174,7 +185,7 @@ a:-webkit-any-link {
 }
 
 a:-webkit-any-link:hover{
-  font-size: 20px;
+  font-size: 15px;
 }
 
 

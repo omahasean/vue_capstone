@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="itinerary-list">
 <div id="result" v-for="(result, index) in resultData" :key="index" v-bind:value="result">
     <div>
     <router-link :to="{name:'details'}">{{result.name}}</router-link>
@@ -7,7 +7,7 @@
     </div> 
     <hr id="line">
 </div>
-<button type="button" @click="addItenirary">Create Itinerary</button>
+<button class="button-itinerary" type="button" @click="addItenirary">Create Itinerary</button>
 </div>
 </template>
 
@@ -48,9 +48,24 @@ export default {
 </script>
 
 <style>
+.itinerary-list{
+    grid-template-areas: 1fr, 6fr, 1fr;
+        grid-template-rows: auto;
+    grid-template-areas:
+    ". result ."
+    ". button ." 
+}
 #result {
     color: white;
     text-align: center;
+}
+.button-itinerary{
+    grid-area: button;
+    width: 100%;
+    height: 20%;
+    padding: 3px;
+    font-size: 20px;
+    font-family: 'Lobster', cursive;
 }
 
 </style>

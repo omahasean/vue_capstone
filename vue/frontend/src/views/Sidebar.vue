@@ -1,6 +1,6 @@
 <template>
     <div class="sidebar">
-        <h1 id="Logo">City Tours</h1>
+        <h1 class="Logo">City Tours</h1>
         <SearchMap @sendSearch="recieveData" @sendCity="sendCity"/>
         <ResultList :resultData="searchData" @populateItenirary="listItenirary"/>
         <Itenirary :iteniraryData="itenirary"/>
@@ -43,6 +43,7 @@ export default {
 
         listItenirary(iteniraryArray) {
             this.itenirary = iteniraryArray;
+            this.$emit('sendItenirary', iteniraryArray);
         }
     }
 
@@ -60,6 +61,7 @@ export default {
   background-color: #2e2e2e ; /* Black */
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 10px;
+  background-image: linear-gradient( #2e2e2e, Black);
 }
 
 h1 {
@@ -69,7 +71,7 @@ h1 {
   text-align: center;
   margin-top:0;
 }
-#Logo{
+.Logo{
     font-family: 'Lobster', cursive;
 }
 
