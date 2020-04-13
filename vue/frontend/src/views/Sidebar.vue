@@ -3,7 +3,13 @@
         <h1 class="Logo">City Tours</h1>
         <SearchMap @sendSearch="recieveData" @sendCity="sendCity"/>
         <ResultList :resultData="searchData" @populateItenirary="listItenirary"/>
-        <Itenirary :iteniraryData="itenirary"/>
+        
+        <Itenirary v-if="directions === false" :iteniraryData="itenirary"/>
+       
+       
+        <Directions :wp="wp" v-if="directions === true" />
+        
+        <button type="button" @click="toggle">Toggle</button>
     </div>
 </template>
 
@@ -12,20 +18,29 @@
 import SearchMap from "./SearchMap";
 import ResultList from "./ResultList";
 import Itenirary from './Itenirary';
+import Directions from "./Directions";
 
 export default {
     name: 'Sidebar',
     components: {
         SearchMap,
         ResultList,
-        Itenirary
+        Itenirary,
+        Directions
+    },
+
+    props: {
+        waypoints: String
     },
 
     data() {
         return {
             searchData : [],
             userCity: '',
-            itenirary: []
+            itenirary: [],
+            directions: false,
+            wp: ''
+            
         }
     },
 
@@ -44,7 +59,20 @@ export default {
         listItenirary(iteniraryArray) {
             this.itenirary = iteniraryArray;
             this.$emit('sendItenirary', iteniraryArray);
+        },
+
+        toggle() {
+           if (this.directions === true) {
+               this.directions = false;
+           } else {
+               this.directions = true;
+           }
+           console.log(this.wp);
         }
+    },
+
+    updated() {
+        this.wp = this.waypoints;
     }
 
 }
