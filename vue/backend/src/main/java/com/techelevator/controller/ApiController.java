@@ -82,11 +82,12 @@ public class ApiController {
 	return refinedList;
 	}
 	
-	@PostMapping(path="/getUser/", produces="application/json")
-	public List<Itinerary> searchUserItineraries(@RequestBody User user){
-		System.out.println(user.getUsername());
-		return itineraryDao.getAllItinerariesForUser((int)user.getId());
+	@PostMapping(path="/getUser/{username}", produces="application/json")
+	public List<Itinerary> searchUserItineraries(@PathVariable String username){
+			
+		return itineraryDao.getAllItinerariesForUser(username);
 	}
+	
 	@GetMapping(path="/getUserItin/{itineraryId}", produces="application/json")
 	public Itinerary getItineraryByItineraryId(@PathVariable int itineraryId){
 		User user = authProvider.getCurrentUser();

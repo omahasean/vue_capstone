@@ -1,9 +1,10 @@
 <template>
   <div>
-      <div class="userItineraries" v-for="(result, index) in userItineraries" :key="index" v-bind:value="result">
-          <h3>{{result.name}}</h3>
+      <!-- <div class="userItineraries" v-for="(result, index) in userItineraries" :key="index" v-bind:value="result">
+          <h3>{{result.name}}</h3> -->
+          <p class="itineraries">{{user}} text</p>
       </div>
-  </div>
+  <!-- </div> -->
 </template>
 
 <script>
@@ -15,7 +16,7 @@ export default {
     data() {
         return {
             userItineraries: [],
-            user: auth.getUser(), //this is not working currently(why)
+            username: auth.getUser().sub, //this is not working currently(why)
         }
     },
     methods: {
@@ -23,13 +24,15 @@ export default {
     },
 
     beforeMount(){
-        fetch(`${process.env.VUE_APP_REMOTE_API}/api/getUser/`, {
-          method: 'POST',
+        fetch(`${process.env.VUE_APP_REMOTE_API}/api/getUser/${this.username}`, {
+          method: 'GET',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(this.user)
+        //   'Authorization': 'Bearer '+ auth.getToken()
+    
+        }
+        // body: JSON.stringify(this.user)
         })
         .then((response) =>{
             return response.json();
@@ -42,5 +45,7 @@ export default {
 </script>
 
 <style>
-
+.itineraries {
+    color: white;
+}
 </style>

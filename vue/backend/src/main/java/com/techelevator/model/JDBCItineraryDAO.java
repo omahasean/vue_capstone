@@ -27,13 +27,13 @@ public class JDBCItineraryDAO implements ItineraryDAO{
 	}
 
 	@Override
-	public List<Itinerary> getAllItinerariesForUser(int userId) {
+	public List<Itinerary> getAllItinerariesForUser(String username) {
 		String queryString = "SELECT * FROM itinerary\n" + 
 							"JOIN itinerary_landmarks ON itinerary.itinerary_id = itinerary_landmarks.itinerary_id\n" + 
 							"JOIN landmarks ON itinerary_landmarks.landmark_id = landmarks.landmark_id\n" + 
-							"WHERE itinerary.user_id = ?;";
+							"WHERE itinerary.username = ?;";
 		
-		SqlRowSet results = jdbcTemplate.queryForRowSet(queryString, userId);
+		SqlRowSet results = jdbcTemplate.queryForRowSet(queryString, username);
 		
 		ArrayList<Itinerary> itineraryList = new ArrayList<Itinerary>();
 		Itinerary firstItin = new Itinerary(1);
