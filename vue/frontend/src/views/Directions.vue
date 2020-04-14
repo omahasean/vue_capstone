@@ -94,6 +94,7 @@ export default {
 <style>
 #directions {
     color: white;
+    
 }
 
 </style>
