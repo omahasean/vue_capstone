@@ -103,7 +103,7 @@ public class JdbcUserDao implements UserDao {
     @Override
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<User>();
-        String sqlSelectAllUsers = "SELECT id, username, role FROM users";
+        String sqlSelectAllUsers = "SELECT user_id, username, role FROM users";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sqlSelectAllUsers);
 
         while (results.next()) {
@@ -116,7 +116,7 @@ public class JdbcUserDao implements UserDao {
 
     private User mapResultToUser(SqlRowSet results) {
         User user = new User();
-        user.setId(results.getLong("id"));
+        user.setId(results.getLong("user_id"));
         user.setUsername(results.getString("username"));
         user.setRole(results.getString("role"));
         return user;
