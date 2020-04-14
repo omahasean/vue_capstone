@@ -15,11 +15,14 @@
     
     <hr id="line">
 </div>
+<input type="text" v-model="nameItinerary"/>
 <button class="button-itinerary" type="button" @click="addItenirary">Create Itinerary</button>
+<button class="save-itinerary" type="button" @click="saveItinerary">Save Tour</button>
 </div>
 </template>
 
 <script>
+import auth from '../auth'
 export default {
     name: 'ResultList',
 
@@ -34,7 +37,12 @@ export default {
             selected: [],
             showDetail: false,
             detail: [],
-            
+            nameItinerary: '',
+            packagePost: {
+                itineraryName: this.nameItinerary,
+                itinerary: this.itenirary,
+                username: auth.getUser().sub,
+            }
         }
     },
 
@@ -49,11 +57,38 @@ export default {
         details (result){
             if(result.show === false){
                 result.show = true;
+                this.$forceUpdate();
             }
             else{
                 result.show = false;
+                this.$forceUpdate();
             }
+        },
+        saveItinerary(){
+            fetch(`${process.env.VUE_APP_REMOTE_API}/api/saveItinerary`,{
+               method: 'POST',
+               headers: {
+                   Accept: 'application/json',
+                   'Content-Type': 'application/json', 
+               },
+               body: JSON.stringify({
+                itineraryName: this.nameItinerary,
+                itinerary: this.itenirary,
+                username: auth.getUser().sub,
+            }),
+               
+            })
+            .then((response)=>{
+                if(response.ok){
+                    console.log('ok');
+                }
+            })
+
         }
+        // saveItinerary(){
+        //     console.log(this.itenirary);
+        // }
+
     },
 
     computed: {

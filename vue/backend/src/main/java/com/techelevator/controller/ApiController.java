@@ -7,6 +7,7 @@ import com.techelevator.model.Itinerary;
 import com.techelevator.model.ItineraryDAO;
 import com.techelevator.model.Location;
 import com.techelevator.model.LocationDAO;
+import com.techelevator.model.PackagePost;
 import com.techelevator.model.User;
 
 import java.util.ArrayList;
@@ -91,7 +92,12 @@ public class ApiController {
 	@GetMapping(path="/getUserItin/{itineraryId}", produces="application/json")
 	public Itinerary getItineraryByItineraryId(@PathVariable int itineraryId){
 		User user = authProvider.getCurrentUser();
-		return itineraryDao.getItineraryById(itineraryId, (int)user.getId());
+		return itineraryDao.getItineraryById(itineraryId, user.getUsername());
+	}
+	@PostMapping(path="/saveItinerary", consumes="application/json")
+	public void saveItineraryToDB(@RequestBody PackagePost post) {
+		System.out.println(post.toString());
+//		itineraryDao.saveItineraryToDB(post.getUsername(), post.getItineraryName(), post.getItinerary().getLocationList());
 	}
 	
 }
