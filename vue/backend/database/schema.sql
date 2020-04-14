@@ -33,8 +33,8 @@ CREATE TABLE landmarks (
 
 CREATE TABLE itinerary (
  itinerary_id serial PRIMARY KEY,
- user_id integer,
- CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES users(user_id),
+ username varchar(255),
+ CONSTRAINT username FOREIGN KEY (username) REFERENCES users(username),
  itinerary_name varchar(255)
 );
 
