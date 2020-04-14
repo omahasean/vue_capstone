@@ -1,9 +1,9 @@
 -- Password for this user is 'greatwall'
-INSERT INTO users ("username", "password", "salt", "role") VALUES
+INSERT INTO users ("username", "password", "salt", "role", "itineraryid") VALUES
 ('user',
 'FjZDm+sndmsdEDwNtfr6NA==',
 'kidcasB0te7i0jK0fmRIGHSm0mYhdLTaiGkEAiEvLp7dAEHWnuT8n/5bd2V/mqjstQ198iImm1xCmEFu+BHyOz1Mf7vm4LILcrr17y7Ws40Xyx4FOCt8jD03G+jEafpuVJnPiDmaZQXJEpEfekGOvhKGOCtBnT5uatjKEuVWuDA=',
-'user');
+'user', 1);
 
 
 INSERT INTO landmarks("landmark_name", "address", "zipcode", "city", "state", "latitude", "longitude", "description")
@@ -13,10 +13,10 @@ VALUES ('Easton Town Center', '160 Easton Town Ctr', 43219, 'Columbus', 'Ohio', 
        ('Lucas Oil Stadium', '500 South Capitol Avenue', 46225, 'Indianapolis', 'Indiana', 39.7601, 86.1639, 'Lucas Oil Stadium is a multi-purpose stadium in Downtown Indianapolis, Indiana, United States. It replaced the RCA Dome as the home field of the NFLs Indianapolis Colts and opened on August 16, 2008.[11] The stadium was constructed to allow the removal of the RCA Dome and expansion of the Indiana Convention Center on its site.'),
        ('Rock and Roll Hall of Fame', '1100 Rock and Roll Boulevard', 44114, 'Cleveland', 'Ohio', 41.5085, 81.6954, 'The Rock and Roll Hall of Fame is a museum and hall of fame located in downtown Cleveland, Ohio, on the shore of Lake Erie. The museum documents the history of rock music and the artists, producers, engineers, and other notable figures who have influenced its development.');
 
-INSERT INTO itinerary ("itinerary_name", "username")
-VALUES  ('test', user),
-        ('test2', user),
-        ('test3', user);
+INSERT INTO itinerary ("itinerary_name", "username", "itinerary_id")
+VALUES  ('test', 'user', 2),
+        ('test1', 'user', 1),
+        ('test2', 'user', 3);
         
 INSERT INTO itinerary_landmarks("itinerary_id", "landmark_id")
 VALUES  (1,1),

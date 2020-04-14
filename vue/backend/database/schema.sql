@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS itinerary_landmarks;
 DROP TABLE IF EXISTS itinerary;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS landmarks;
+DROP TABLE IF EXISTS itinerary;
 
 
 
@@ -13,8 +14,10 @@ CREATE TABLE users (
   username varchar(255) NOT NULL UNIQUE,     -- Username
   password varchar(32) NOT NULL,      -- Password
   salt varchar(256) NOT NULL,          -- Password Salt
-  role varchar(255) NOT NULL default('user')
-);
+  role varchar(255) NOT NULL default('user'),
+  itineraryId int
+
+ );
 
 CREATE TABLE landmarks (
   landmark_id serial PRIMARY KEY,

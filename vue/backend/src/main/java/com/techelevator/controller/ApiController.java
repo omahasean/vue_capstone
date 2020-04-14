@@ -82,7 +82,7 @@ public class ApiController {
 	return refinedList;
 	}
 	
-	@PostMapping(path="/getUser/{username}", produces="application/json")
+	@GetMapping(path="/getUser/{username}", produces="application/json")
 	public List<Itinerary> searchUserItineraries(@PathVariable String username){
 			
 		return itineraryDao.getAllItinerariesForUser(username);

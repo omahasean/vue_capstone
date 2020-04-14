@@ -2,7 +2,7 @@
     <div class="sidebar">
         <h1 class="Logo">City Tours</h1>
         <ul class="tabs">
-            <li @click="hide">Your Tours</li>
+            <li @click="hide">{{username}}'s Tours</li>
             <li @click="show">New Tour</li>
         </ul>
         <SearchMap v-show="tour" @sendSearch="recieveData" @sendCity="sendCity"/>
@@ -27,6 +27,7 @@ import ResultList from "./ResultList";
 import Itenirary from './Itenirary';
 import Directions from "./Directions";
 import ItineraryList from "./ItineraryList";
+import auth from "../auth"
 
 export default {
     name: 'Sidebar',
@@ -35,7 +36,8 @@ export default {
         ResultList,
         Itenirary,
         Directions,
-        ItineraryList
+        ItineraryList,
+
     },
 
     props: {
@@ -50,6 +52,7 @@ export default {
             directions: false,
             wp: '',
             tour: true,
+            username: auth.getUser().sub
             
         }
     },

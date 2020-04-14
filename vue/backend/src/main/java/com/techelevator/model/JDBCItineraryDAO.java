@@ -52,7 +52,7 @@ public class JDBCItineraryDAO implements ItineraryDAO{
 			String description = results.getString("description");
 			double longitude = results.getDouble("longitude");
 			double latitude = results.getDouble("latitude");
-			Location local = new Location(zip, name, address, city, state, description, latitude, longitude);
+			Location local = new Location(localId, zip, name, address, city, state, description, latitude, longitude);
 			
 			for (int i = 0; i<=itineraryList.size(); i++) {
 				if(i==(itineraryList.size()) && i!=0 && itineraryId != itineraryList.get(i-1).getItineraryId()) {
@@ -130,11 +130,13 @@ public class JDBCItineraryDAO implements ItineraryDAO{
 		
 		while(results.next()) {
 			itin.setItineraryId(results.getInt("itinerary_id"));
+			
+			System.out.print(results.getInt("itinerary_id"));
 		}
 		
-		String  updateStringForCrossTable = "INSERT INTO intinerary_landmarks (itinerary_id, landmark_id) VALUES (?,?)";
+		String  updateStringForCrossTable = "INSERT INTO itinerary_landmarks (itinerary_id, landmark_id) VALUES (?,?)";
 
-		ArrayList<Integer[]> batchArgs = new ArrayList<Integer[]>();
+		ArrayList<Object[]> batchArgs = new ArrayList<Object[]>();
 		
 		for(Location local: itin.getLocationList()) {
 			Integer[] batch = new Integer[]{		
@@ -143,7 +145,7 @@ public class JDBCItineraryDAO implements ItineraryDAO{
 			};
 			batchArgs.add(batch);
 			}
-		jdbcTemplate.batchUpdate(updateStringForCrossTable, (BatchPreparedStatementSetter) batchArgs);
+		jdbcTemplate.batchUpdate(updateStringForCrossTable, batchArgs);
 	}
 
 }
