@@ -56,15 +56,16 @@ public class JDBCLocationDAO implements LocationDAO {
 		ArrayList<Location> locations = new ArrayList<Location>();
 
 		while (results.next()) {
+			int locationId = results.getInt("landmark_id");
 			int zip = results.getInt("zipcode");
-			String name = results.getString("name");
+			String name = results.getString("landmark_name");
 			String address = results.getString("address");
 			String city = results.getString("city");
 			String state = results.getString("state");
 			String description = results.getString("description");
 			double longitude = results.getDouble("longitude");
 			double latitude = results.getDouble("latitude");
-			Location local = new Location(zip, name, address, city, state, description, latitude, longitude);
+			Location local = new Location(locationId, zip, name, address, city, state, description, latitude, longitude);
 			locations.add(local);
 		}
 
