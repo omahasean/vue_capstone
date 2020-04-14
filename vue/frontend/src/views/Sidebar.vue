@@ -1,16 +1,22 @@
 <template>
     <div class="sidebar">
         <h1 class="Logo">City Tours</h1>
-        <SearchMap @sendSearch="recieveData" @sendCity="sendCity"/>
-        <ResultList :resultData="searchData" @populateItenirary="listItenirary"/>
-        <ItineraryList/>
+        <ul class="tabs">
+            <li @click="hide">Your Tours</li>
+            <li @click="show">New Tour</li>
+        </ul>
+        <SearchMap v-show="tour" @sendSearch="recieveData" @sendCity="sendCity"/>
+        <ResultList v-show="tour" :resultData="searchData" @populateItenirary="listItenirary"/>
+
         
-        <Itenirary v-if="directions === false" :iteniraryData="itenirary"/>
+        <Itenirary v-show="tour" v-if="directions === false" :iteniraryData="itenirary"/>
        
        
-        <Directions :wp="wp" v-if="directions === true" />
+        <Directions v-show="tour" :wp="wp" v-if="directions === true" />
         
-        <button type="button" @click="toggle">Toggle</button>
+        <button v-show="tour" type="button" @click="toggle">Toggle</button>
+        <ItineraryList v-show="!tour"/>
+
     </div>
 </template>
 
@@ -42,7 +48,8 @@ export default {
             userCity: '',
             itenirary: [],
             directions: false,
-            wp: ''
+            wp: '',
+            tour: true,
             
         }
     },
@@ -71,6 +78,16 @@ export default {
                this.directions = true;
            }
            console.log(this.wp);
+        },
+        show(){
+            if(this.tour===true){
+                this.tour=false;
+            }
+        },
+        hide(){
+            if(this.tour===false){
+                this.tour=true;
+            }
         }
     },
 
@@ -83,16 +100,39 @@ export default {
 
 <style>
 .sidebar{
-    height: 100%; /* Full-height: remove this if you want "auto" height */
+height: 100%; /* Full-height: remove this if you want "auto" height */
   width: 300px; /* Set the width of the sidebar */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  position: fixed;
   z-index: 1; /* Stay on top */
   top: 0; /* Stay at the top */
   left: 0;
   background-color: #2e2e2e ; /* Black */
-  overflow-x: hidden; /* Disable horizontal scroll */
+  overflow-x: hidden;
   padding-top: 10px;
   background-image: linear-gradient( #2e2e2e, Black);
+}
+.tabs {
+  grid-template-columns: 1fr, 6fr, 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    ". content .";
+  list-style-type: none;
+  overflow: hidden;
+  top: 0;
+  width: 300px;
+}
+.tabs li {
+  grid-area: content;
+  display: inline;
+  margin: 10px;
+  margin-left: -15px;
+  border-top: 1px solid #005c75;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding-right: 30px;
+  padding-left: 30px;
+  font-family: 'Baloo Paaji 2', cursive;
+  background-image: linear-gradient(#99ff94, #005c75)
 }
 
 h1 {

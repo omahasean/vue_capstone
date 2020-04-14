@@ -1,10 +1,14 @@
 <template>
 <div class="itinerary-list">
 <div id="result" v-for="(result, index) in resultData" :key="index" v-bind:value="result">
+    <ul>
     <div>
-    <router-link :to="{name:'details'}">{{result.name}}</router-link>
+    <li @click="details" v-bind:value="showDetail">{{result.name}}</li>
+    <p v-show="showDetail">{{result.streetAddress}} {{result.city}}, {{result.state}} {{result.zipCode}}<br>{{result.description}}</p>
+
     <input type="checkbox" id="result.name"  v-bind:value="result" v-model="itenirary">
-    </div> 
+    </div>
+    </ul> 
     <hr id="line">
 </div>
 <button class="button-itinerary" type="button" @click="addItenirary">Create Itinerary</button>
@@ -23,7 +27,9 @@ export default {
         return {
             itenirary: [],
             checked: false,
-            selected: []
+            selected: [],
+            showDetail: false,
+            detail: [],
         }
     },
 
@@ -34,6 +40,14 @@ export default {
         showDetails(){
             
             this.$emit('loadDetails', this.result)
+        },
+        details(){
+            if(this.showDetail===false){
+                this.showDetail=true;
+            }
+            else{
+                this.showDetail=false;
+            }
         }
     },
 
@@ -61,7 +75,8 @@ export default {
 }
 .button-itinerary{
     grid-area: button;
-    width: 100%;
+    margin-left: 4em;
+    width: 50%;
     height: 20%;
     padding: 3px;
     font-size: 20px;

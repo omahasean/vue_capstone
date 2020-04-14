@@ -1,12 +1,16 @@
 package com.techelevator.model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
@@ -14,10 +18,12 @@ import org.springframework.stereotype.Component;
 public class JDBCItineraryDAO implements ItineraryDAO{
 	
 	private JdbcTemplate jdbcTemplate; 
+	private SimpleJdbcCall simpleCall;
 	
 	@Autowired
 	public JDBCItineraryDAO(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
+		this.simpleCall = new SimpleJdbcCall(dataSource);
 	}
 
 	@Override
@@ -37,6 +43,7 @@ public class JDBCItineraryDAO implements ItineraryDAO{
 			int itineraryId = results.getInt("itinerary_id");
 			String itineraryName = results.getString("itinerary_name");
 			
+			int localId = results.getInt("landmark_id");
 			int zip = results.getInt("zipcode");
 			String name = results.getString("landmark_name");
 			String address = results.getString("address");
@@ -104,6 +111,39 @@ public class JDBCItineraryDAO implements ItineraryDAO{
 		newItin.setLocationList(locationList);
 		
 		return newItin;
+	}
+	
+	public void saveItineraryToDB(int userId, String itinName, ArrayList<Location> localList) {
+		
+		Itinerary itin = new Itinerary(localList);
+		
+		itin.setName(itinName);
+		
+		String queryString = "INSERT INTO itinerary (user_id, itinerary_name)\n" + 
+				"VALUES (?,?);";
+		
+		jdbcTemplate.update(queryString, userId, itinName);
+		
+		String queryForItinId = "SELECT itinerary_id FROM itinerary WHERE user_id=? AND itinerary_name = ?";
+		
+		SqlRowSet results = jdbcTemplate.queryForRowSet(queryForItinId, userId, itinName);
+		
+		while(results.next()) {
+			itin.setItineraryId(results.getInt("itinerary_id"));
+		}
+		
+		String  updateStringForCrossTable = "INSERT INTO intinerary_landmarks (itinerary_id, landmark_id) VALUES (?,?)";
+
+		ArrayList<Integer[]> batchArgs = new ArrayList<Integer[]>();
+		
+		for(Location local: itin.getLocationList()) {
+			Integer[] batch = new Integer[]{		
+				itin.getItineraryId(),
+				local.getLocationId(),
+			};
+			batchArgs.add(batch);
+			}
+		jdbcTemplate.batchUpdate(updateStringForCrossTable, (BatchPreparedStatementSetter) batchArgs);
 	}
 
 }
