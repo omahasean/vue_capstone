@@ -86,12 +86,14 @@ export default {
     border-radius: 30px;
     margin: 5px;
     padding: 0px;
+    z-index: 102;
 }
 .userItineraries h3{
     color:white;
     font-family: 'Roboto', sans-serif;
     font-size: 30px;
     line-height: .3;
+    z-index: 103;
 }
 .userItineraries h3:hover{
     color: #0ffc03;

@@ -1,7 +1,7 @@
 <template>
 <div class="itenirary-container">
     <h1>Your Itinerary</h1>
-    <ul>
+    <ul class="itinerary-display">
 
         <li class="itinerary" v-for="(result, index) in iteniraryData" :key="index">
             <h4>{{result.name}}</h4>
@@ -31,11 +31,22 @@ li {
     list-style-type: none;
 }
 .itinerary{
-    display: grid;
-    text-decoration: none;
-    color: #99ff94 ;
+    color: white;
+    display: flex;
+    flex-direction: column;
     text-align: center;
-    padding-right: 50px;
-    border-bottom: solid;
+    background: radial-gradient(#2e2e2e, rgba(0, 92, 117, .1));
+    border-radius: 30px;
+    margin: 5px;
+    padding: 10px;
+}
+.itinerary-display{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    list-style-type: none;
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+    padding-inline-start: 0px;
 }
 </style>

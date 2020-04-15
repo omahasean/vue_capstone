@@ -3,19 +3,22 @@
 <div id="result" v-for="(result, index) in addKey" :key="index"  >
    
     <div>
-    <p @click="details(result)">{{result.name}}</p>
+    <p id="resultName" @click="details(result)">{{result.name}}</p>
 
 
     
-<p v-if="result.show">{{result.streetAddress}} {{result.city}}, {{result.state}} {{result.zipCode}}<br>{{result.description}}</p>
+<p id="resultDetail" v-if="result.show">{{result.streetAddress}}<br>{{result.city}}, {{result.state}} {{result.zipCode}}<br><br>{{result.description}}</p>
     </div>
     <div>
     <input type="checkbox"  v-bind:value="result" :id="result.name" v-model="itenirary">
     </div>
     
-    <hr id="line">
+
 </div>
-<input type="text" v-model.trim="nameItinerary"/>
+<div id="itinerary-Name">
+<label for="itineraryName">Itinerary Name:  </label>
+<input id="itineraryName" type="text" v-model.trim="nameItinerary"/>
+</div>
 <button class="button-itinerary" type="button" @click="addItenirary(); saveItinerary()">Create Itinerary</button> 
 <!--<button class="button-itinerary" type="button" @click="addItenirary()">Create Itinerary</button>-->
 <!-- <button class="save-itinerary" type="button" @click="saveItinerary">Save Tour</button> -->
@@ -103,12 +106,21 @@ export default {
     ". button ." 
 }
 #result {
-    grid-area: result;
     color: white;
+    display: grid;
     text-align: center;
+    background: radial-gradient(#2e2e2e, #2e2e2e, rgba(153, 255, 148, .1));
+    border-radius: 30px;
+    margin: 5px;
+    padding: 10px;
 }
-
-
+#resultName{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+}
+#resultDetail{
+    font-family: 'Roboto', sans-serif;
+}
 .button-itinerary{
     grid-area: button;
     margin-left: 4em;
@@ -117,6 +129,16 @@ export default {
     padding: 3px;
     font-size: 20px;
     font-family: 'Lobster', cursive;
+}
+#itinerary-Name{
+    color:rgba(153, 255, 148, 1);
+    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+#itinerary-Name label{
+    padding-right: 5px;
 }
 
 </style>

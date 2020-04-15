@@ -111,13 +111,16 @@ export default {
 height: 100%; /* Full-height: remove this if you want "auto" height */
   width: 300px; /* Set the width of the sidebar */
   position: fixed;
-  z-index: 1; /* Stay on top */
+  z-index: 101; /* Stay on top */
   top: 0; /* Stay at the top */
   left: 0;
   background-color: #2e2e2e ; /* Black */
   overflow-x: hidden;
   padding-top: 10px;
   background-image: linear-gradient( #2e2e2e, Black);
+}
+.sidebar::-webkit-scrollbar {
+  display: none;
 }
 .tabs {
   grid-template-columns: 1fr, 6fr, 1fr;
@@ -156,5 +159,7 @@ h1 {
 .Logo{
     font-family: 'Lobster', cursive;
 }
-
+.tabs li.active{
+  background-color: #99ff94;
+}
 </style>
