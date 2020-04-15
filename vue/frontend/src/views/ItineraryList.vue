@@ -9,6 +9,8 @@
       <h3 @click="showItinerary(result)">{{result.name}}</h3>
       <div v-if="result.show === true">
         <option v-for="(location, index) in result.locationList" :key="index">{{location.name}}</option>
+        <!-- <button @click="showDirections" >Directions</button> -->
+        <Directions :wayPoints="result.locationList"/>
       </div>
     </div>
   </div>
@@ -16,9 +18,14 @@
 
 <script>
 import auth from "../auth";
+import Directions from "./Directions";
+
 export default {
   name: "ItineraryList",
 
+ components: {
+     Directions
+ },
   data() {
     return {
       userItineraries: [],

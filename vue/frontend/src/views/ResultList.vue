@@ -1,5 +1,6 @@
 <template>
 <div class="itinerary-list">
+    
 <div id="result" v-for="(result, index) in addKey" :key="index"  >
    
     <div>
@@ -20,8 +21,8 @@
 <input id="itineraryName" type="text" v-model.trim="nameItinerary"/>
 </div>
 <button class="button-itinerary" type="button" @click="addItenirary(); saveItinerary()">Create Itinerary</button> 
-<!--<button class="button-itinerary" type="button" @click="addItenirary()">Create Itinerary</button>-->
-<!-- <button class="save-itinerary" type="button" @click="saveItinerary">Save Tour</button> -->
+<input type="text" v-model.trim="nameItinerary"/>
+
 </div>
 </template>
 
@@ -140,5 +141,28 @@ export default {
 #itinerary-Name label{
     padding-right: 5px;
 }
+
+/* #itinerary-grid{
+    display: grid;
+    grid-template-areas: "name box"
+                         "details details";
+    align-items: center;
+}
+
+#name {
+    grid-area: name;
+    margin-right: 0px;
+    padding-left: 0px;
+}
+
+#box {
+    grid-area: box;
+    margin-left: 0px;
+    padding-right: 0px;
+}
+
+#details {
+    grid-area: details;
+} */
 
 </style>
