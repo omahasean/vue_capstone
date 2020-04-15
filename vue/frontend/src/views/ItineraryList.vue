@@ -79,6 +79,25 @@ export default {
 
 <style>
 .userItineraries {
-  color: white;
+    color: white;
+    display: grid;
+    text-align: center;
+    background: radial-gradient(#2e2e2e, #2e2e2e, rgba(153, 255, 148, .1));
+    border-radius: 30px;
+    margin: 5px;
+    padding: 0px;
 }
+.userItineraries h3{
+    color:white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 30px;
+    line-height: .3;
+}
+.userItineraries h3:hover{
+    color: #0ffc03;
+}
+.userItineraries option{
+    font-family: 'Baloo Paaji 2', cursive;
+}
+
 </style>

@@ -25,7 +25,7 @@ export default {
 
 <style>
 h1{
-    font-family: 'Baloo Paaji 2', cursive;
+    font-family: 'Roboto', sans-serif;
 }
 li {
     list-style-type: none;

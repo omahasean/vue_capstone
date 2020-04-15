@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div id="form=box">
-    <h2>Start Your Own Tour</h2>
+
       <form class="form">
             <input type="text"  class="search" placeholder="Please Enter a City" v-model.trim="cityName"/>
             <!-- <input type="submit" class="button" value="submit" @click="searchCity"> -->
@@ -119,7 +119,7 @@ methods: {
     width: 100%;
     margin-bottom: 1em;
     font-size: 15px;
-    font-family: 'Lobster', cursive;
+    font-family: 'Roboto', sans-serif;
   }
   .button{
     grid-area: button;
@@ -138,7 +138,7 @@ methods: {
     justify-content: center;
     align-self: center;
     color:#99ff94;
-    font-family: 'Lobster', cursive;
+    font-family: 'Roboto', sans-serif;
   }
   .results{
     color:white;

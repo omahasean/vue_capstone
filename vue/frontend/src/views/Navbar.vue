@@ -2,7 +2,7 @@
 <div>
   
   <ul class="nav">
-      <li><a href="/">Home</a></li>
+      <li><a href="/landing">Home</a></li>
       <li v-if="user === null"><a href="/login">Login</a></li>
       <li v-if="user === null"><a href="/register">Register</a></li>
       <li v-if="user != null"><a @click="logout" href="/">Logout</a></li>
@@ -39,6 +39,7 @@ export default {
   overflow: hidden;
   background-color: #2e2e2e ;
   position: fixed;
+  z-index: 100;
   top: 0;
   width: 100%;
   background-image: linear-gradient( to right, #2e2e2e, #2e2e2e, black)
@@ -70,11 +71,13 @@ export default {
 
 .nav .welcome{
   text-align: center;
-  
   font-family: 'Lobster', cursive;
-  font-size: 30px;
+  font-size: 20px;
   border: none;
   color: white;
+  padding-top: 13px;
+  padding-right: 30px;
+
 }
 
 </style>

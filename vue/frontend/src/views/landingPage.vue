@@ -1,40 +1,26 @@
 <template>
 <div class="page">
     <Navbar/>
-    <div class="landingImg">
-        <landingImage/>
-    </div>
-    <div class="slides">
-        <landingPhotoSlideshow/>
+    <div class="landingContent">
+        <landingContent/>
     </div>
 </div>
 </template>
 
 <script>
-import landingImage from "./landingImage"
+import landingContent from "./landingContent"
 import Navbar from "./Navbar"
-import landingPhotoSlideshow from "./landingPhotoSlideshow"
 export default {
     components: {
-        landingImage,
+        landingContent,
         Navbar,
-        landingPhotoSlideshow
+
     }
 
 }
 </script>
 
 <style>
-.page{
-    grid-template-areas: 
-    "landingImg"
-    "Slides"
-}
-.landingImg{
-    grid-area: landingImg;
-    padding-bottom: 60vh;
-}
-.slides{
-    grid-area: slides;
-}
+
+
 </style>

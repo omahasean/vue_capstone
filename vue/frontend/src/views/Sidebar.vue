@@ -2,8 +2,8 @@
     <div class="sidebar">
         <h1 class="Logo">City Tours</h1>
         <ul class="tabs">
-            <li @click="hide">{{username}}'s Tours</li>
-            <li @click="show">New Tour</li>
+            <li @click="show">My Tours</li>
+            <li @click="hide">New Tour</li>
         </ul>
         <SearchMap v-show="tour" @sendSearch="recieveData" @sendCity="sendCity"/>
 
@@ -133,14 +133,17 @@ height: 100%; /* Full-height: remove this if you want "auto" height */
   grid-area: content;
   display: inline;
   margin: 10px;
-  margin-left: -15px;
+  margin-left: -10px;
   border-top: 1px solid #005c75;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  padding-right: 30px;
-  padding-left: 30px;
+  padding-right: 42px;
+  padding-left: 42px;
   font-family: 'Baloo Paaji 2', cursive;
-  background-image: linear-gradient(#99ff94, #005c75)
+  background-image: linear-gradient(#99ff94, #005c75);
+}
+.tabs li:first-of-type{
+    margin-left: -39px;
 }
 
 h1 {
