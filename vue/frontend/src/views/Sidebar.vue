@@ -14,7 +14,7 @@
         <Itenirary v-show="tour" v-if="directions === false" :iteniraryData="itenirary"/>
        
        
-        <Directions v-show="!tour" :wp="wp" v-if="directions === true" />
+        
         
         <button v-show="tour" type="button" @click="toggle">Toggle</button>
         
@@ -28,7 +28,7 @@
 import SearchMap from "./SearchMap";
 import ResultList from "./ResultList";
 import Itenirary from './Itenirary';
-import Directions from "./Directions";
+
 import ItineraryList from "./ItineraryList";
 import auth from "../auth"
 
@@ -38,7 +38,7 @@ export default {
         SearchMap,
         ResultList,
         Itenirary,
-        Directions,
+        
         ItineraryList,
 
     },
