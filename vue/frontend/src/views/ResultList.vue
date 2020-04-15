@@ -71,7 +71,7 @@ export default {
                    Accept: 'application/json',
                    'Content-Type': 'application/json', 
                },
-               body: JSON.stringify(packagePost)
+               body: JSON.stringify(this.packagePost)
                  
                 // itineraryName: this.nameItinerary,
                 // itinerary: this.itenirary,
@@ -82,10 +82,11 @@ export default {
                     console.log('ok');
                 }
             })
-            )
+        )
         // saveItinerary(){
         //     console.log(this.itenirary);
         // }
+    }
     },
     computed: {
         addKey(){
@@ -96,6 +97,8 @@ export default {
             return holderArray;
         }
     }
+}
+
 </script>
 
 <style>

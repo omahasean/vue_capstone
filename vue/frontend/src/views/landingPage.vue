@@ -1,29 +1,20 @@
 <template>
 <div class="page">
     <Navbar/>
-    <div class="landingImg">
-        <landingImage/>
-    </div>
-    <!-- <div class="slides">
-        <landingPhotoSlideshow/> 
-    </div> -->
-    <div class="landing-details">
-        <landingPageDetails/>
+    <div class="landingContent">
+        <landingContent/>
     </div>
 </div>
 </template>
 
 <script>
-import landingImage from "./landingImage"
+import landingContent from "./landingContent"
 import Navbar from "./Navbar"
-// import landingPhotoSlideshow from "./landingPhotoSlideshow"
-import landingPageDetails from "./landingPageDetails"
 export default {
     components: {
-        landingImage,
+        landingContent,
         Navbar,
-        // landingPhotoSlideshow,
-        landingPageDetails
+
     }
 
 }
@@ -42,13 +33,5 @@ export default {
     display: flex;
     position: fixed;
 }
-.slides{
-    grid-area: slides;
-    position: relative;
-}
-.landing-details{
-    grid-area: landing-details;
-    display:flex;
-    position:fixed;
-}
+
 </style>

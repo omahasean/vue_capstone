@@ -70,11 +70,13 @@ export default {
 
 .nav .welcome{
   text-align: center;
-  
   font-family: 'Lobster', cursive;
-  font-size: 30px;
+  font-size: 20px;
   border: none;
   color: white;
+  padding-top: 13px;
+  padding-right: 30px;
+
 }
 
 </style>
