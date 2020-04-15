@@ -94,10 +94,12 @@ public class ApiController {
 		User user = authProvider.getCurrentUser();
 		return itineraryDao.getItineraryById(itineraryId, user.getUsername());
 	}
-	@PostMapping(path="/saveItinerary", consumes="application/json")
-	public void saveItineraryToDB(@RequestBody PackagePost post) {
-		System.out.println(post.toString());
-//		itineraryDao.saveItineraryToDB(post.getUsername(), post.getItineraryName(), post.getItinerary().getLocationList());
+	@PostMapping(path="/saveItinerary/{username}/{itineraryName}", consumes="application/json")
+	public void saveItineraryToDB(@RequestBody ArrayList<Location> location, @PathVariable String username, @PathVariable String itineraryName) {
+//		for(Location n: location) {
+//		System.out.println(n.getCity());
+		System.out.println(username + " "+ itineraryName);
+		itineraryDao.saveItineraryToDB(username, itineraryName, location);
 	}
 	
 }

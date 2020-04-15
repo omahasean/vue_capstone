@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 public class PackagePost {
 
-	private Location[] itinerary;
+	private ArrayList<Location> itinerary;
 	private String username;
 	private String itineraryName;
 	
-	public PackagePost(Location[] itinerary, String username, String itineraryName) {
+	public PackagePost(ArrayList<Location> itinerary, String username, String itineraryName) {
 		this.itinerary = itinerary;
 		this.username = username;
 		this.itineraryName=itineraryName;
