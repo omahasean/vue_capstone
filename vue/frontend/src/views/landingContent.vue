@@ -3,7 +3,7 @@
   <header id="landing-image">
       <h1>City Tours</h1>
       <p id="tagline">Find your next adventure</p>
-      <a id="landing-button" href="/">Start Your Tour</a>
+      <a id="landing-button" href="/login">Start Your Tour</a>
   </header> 
   <section id="landing-details">
       <div id="body-container">
@@ -53,8 +53,8 @@
   </div>
   <div id="contact-info">
         <div id="Joe">
-            <h4>Joeseph Ramirez</h4>
-            <a href="mailto:joeyramirez.81@gmail.com" target="blank">Email Joeseph</a>
+            <h4>Joseph Ramirez</h4>
+            <a href="mailto:joeyramirez.81@gmail.com" target="blank">Email Joseph</a>
         </div>
         <div id="Sean">
             <h4>Sean Griswold</h4>

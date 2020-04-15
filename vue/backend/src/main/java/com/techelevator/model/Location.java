@@ -65,7 +65,7 @@ public class Location {
 	}
 	public Location(int locationId, int zipCode, String name, String streetAddress, String city, String state, String description, String latitudeString, String longitudeString) {
 		super();
-		this.locationId = locationId;
+		this.location_id = locationId;
 		this.zipCode = zipCode;
 		this.name = name;
 		this.streetAddress = streetAddress;

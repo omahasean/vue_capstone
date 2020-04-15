@@ -17,9 +17,9 @@
         <Directions v-show="tour" :wp="wp" v-if="directions === true" />
         
         <button v-show="tour" type="button" @click="toggle">Toggle</button>
-        <ItineraryList v-show="!tour"/>
+        
         </div>
-
+<ItineraryList v-show="!tour"/>
     </div>
 </template>
 
