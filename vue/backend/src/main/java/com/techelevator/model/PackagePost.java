@@ -19,13 +19,13 @@ public class PackagePost {
 //		this.itineraryName=itineraryName;
 //	}
 
-	public Itinerary getItinerary() {
-		return itinerary;
-	}
-
-	public void setItinerary(Itinerary itinerary) {
-		this.itinerary = itinerary;
-	}
+//	public Itinerary getItinerary() {
+//		return itinerary;
+//	}
+//
+//	public void setItinerary(Itinerary itinerary) {
+//		this.itinerary = itinerary;
+//	}
 
 	public String getUsername() {
 		return username;

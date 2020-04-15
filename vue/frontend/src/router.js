@@ -5,7 +5,7 @@ import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import Register from './views/Register.vue'
 import Detail from './views/Detail.vue'
-
+import landingPage from './views/landingPage.vue'
 
 Vue.use(Router)
 
@@ -50,6 +50,14 @@ const router = new Router({
       path: "/details",
       name: "details",
       component: Detail,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/landing",
+      name: "landingPage",
+      component: landingPage,
       meta: {
         requiresAuth: false
       }
