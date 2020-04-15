@@ -3,16 +3,31 @@
   
   <ul class="nav">
       <li><a href="/">Home</a></li>
-      <li><a href="/login">Login</a></li>
-      <li><a href="/register">Register</a></li>
+      <li v-if="user === null"><a href="/login">Login</a></li>
+      <li v-if="user === null"><a href="/register">Register</a></li>
+      <li v-if="user != null"><a @click="logout" href="/">Logout</a></li>
       <li class="Logo"><a href="/">City Tours</a></li>
+      <li class="welcome" v-if="user != null">Welcome, {{user.sub}}</li>
   </ul>
   </div>
 </template>
 
 <script>
+import auth from '../auth';
 export default {
   name: 'Navbar',
+
+  data() {
+    return {
+      user: auth.getUser()
+    }
+  },
+
+  methods: {
+    logout(){
+      auth.logout();
+    }
+  }
 }
 </script>
 
@@ -52,6 +67,15 @@ export default {
   font-family: 'Lobster', cursive;
   font-size: 60px;
   border: none;
+}
+
+.nav .welcome{
+  text-align: center;
+  
+  font-family: 'Lobster', cursive;
+  font-size: 30px;
+  border: none;
+  color: white;
 }
 
 </style>
