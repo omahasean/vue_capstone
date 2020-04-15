@@ -39,6 +39,7 @@ export default {
   overflow: hidden;
   background-color: #2e2e2e ;
   position: fixed;
+  z-index: 100;
   top: 0;
   width: 100%;
   background-image: linear-gradient( to right, #2e2e2e, #2e2e2e, black)

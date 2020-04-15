@@ -21,17 +21,6 @@ export default {
 </script>
 
 <style>
-.page{
-    grid-template-areas: 
-    "landingImg"
-    "Slides"
-    "landing-details";
-    display:grid;
-}
-.landingImg{
-    grid-area: landingImg;
-    display: flex;
-    position: fixed;
-}
+
 
 </style>
