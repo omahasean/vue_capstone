@@ -16,16 +16,12 @@
            </select>
            </div>
 
-           <button class="button" type="button" @click="sendCity(); getCoordinates()" >Submit</button>
+           <button class="button" type="button" @click="sendCity(); getCoordinates();" >Submit</button>
            <!-- <button class="button" type="button" @click="$emit('passInofrmation')">Submit</button> -->
       </form>
       <hr id="line">
     </div>
-  <!-- <div class="results">
-    <ul>
-      <li v-for="(landmark, index) in landmarkArray" :key="index">{{landmark.name}} {{landmark.streetAddress}}, {{landmark.city}} {{landmark.zipCode}}</li>
-    </ul>    
-  </div> -->
+
   </div>
 </template>
 

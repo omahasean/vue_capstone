@@ -6,6 +6,8 @@
             <li @click="show">New Tour</li>
         </ul>
         <SearchMap v-show="tour" @sendSearch="recieveData" @sendCity="sendCity"/>
+
+        <div v-show="showComp === true">
         <ResultList v-show="tour" :resultData="searchData" @populateItenirary="listItenirary"/>
 
         
@@ -16,6 +18,7 @@
         
         <button v-show="tour" type="button" @click="toggle">Toggle</button>
         <ItineraryList v-show="!tour"/>
+        </div>
 
     </div>
 </template>
@@ -52,7 +55,8 @@ export default {
             directions: false,
             wp: '',
             tour: true,
-            username: auth.getUser().sub
+            username: auth.getUser().sub,
+            showComp: false,
             
         }
     },
@@ -66,6 +70,7 @@ export default {
 
         sendCity(city){
             this.userCity = city;
+            this.showComp = true;
             this.$emit('cityToHome', city);
         },
 

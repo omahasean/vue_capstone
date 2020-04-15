@@ -6,7 +6,7 @@
     <p @click="details(result)">{{result.name}}</p>
 
 
-    <!-- <p v-show="showDetail">{{result.streetAddress}} {{result.city}}, {{result.state}} {{result.zipCode}}<br>{{result.description}}</p> -->
+    
 <p v-if="result.show">{{result.streetAddress}} {{result.city}}, {{result.state}} {{result.zipCode}}<br>{{result.description}}</p>
     </div>
     <div>
@@ -18,7 +18,7 @@
 <input type="text" v-model.trim="nameItinerary"/>
 <!-- <button class="button-itinerary" type="button" @click="addItenirary(); saveItinerary()">Create Itinerary</button> -->
 <button class="button-itinerary" type="button" @click="addItenirary()">Create Itinerary</button>
-<!-- <button class="save-itinerary" type="button" @click="saveItinerary">Save Tour</button> -->
+
 </div>
 </template>
 
@@ -72,17 +72,13 @@ export default {
                body: JSON.stringify(this.itenirary),
                
             })
-            .then((response)=>{
-                if(response.ok){
-                    console.log('ok');
-                }
+            // .then((response)=>{
+               
             
-            })
+            // })
 
         }
-        // saveItinerary(){
-        //     console.log(this.itenirary);
-        // }
+        
 
     },
 
@@ -112,13 +108,7 @@ export default {
     text-align: center;
 }
 
-/* #result ~ h5 {
-    display: none;
-}
 
-#result ~ h5:active {
-    display:inline-block;
-} */
 .button-itinerary{
     grid-area: button;
     margin-left: 4em;

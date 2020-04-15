@@ -2,6 +2,7 @@
 
   <div id="homePage" class="home">
     <Navbar/>
+   
     <Sidebar @cityToHome="showNew" @pushpins="formatPins" @sendItenirary="formatWP" :waypoints="wp"/>
   <div id="home" class="content-home">
     
@@ -49,7 +50,9 @@ export default {
       pinsArray: [],
       wpArray: [],
       wp: '',
-      showPin: false
+      showPin: false,
+      currentLat: 0,
+      currentLong: 0
       
     
     }
@@ -77,7 +80,8 @@ export default {
     },
 
     showImage() {
-      return `https://dev.virtualearth.net/REST/v1/Imagery/Map/Road/columbus?mapSize=2000,1000&key=${apiKey}`
+      
+      return `https://dev.virtualearth.net/REST/v1/Imagery/Map/Road/${this.currentLat},${this.currentLong}/15?mapSize=2000,1000&pp=${this.currentLat},${this.currentLong}&key=${apiKey}`
     },
   
 
@@ -166,10 +170,33 @@ export default {
        
         // document.getElementById('home').replaceChild(img, pinImage);
       })
-    }
+    },
+
+    showPosition(position) {
+  
+    this.currentLat = position.coords.latitude;
+    this.currentLong = position.coords.longitude;
+    console.log(this.currentLat);
+}
+  },
+
+  created() {
+    
+  // if (navigator.geolocation) {
+    navigator.geolocation.watchPosition(this.showPosition);
+   
+  // } else { 
+  //   x.innerHTML = "Geolocation is not supported by this browser.";
+  // }
+},
+
+
+
+
+   
 
 }
-}
+
   
   
     
@@ -190,4 +217,11 @@ const city = 'columbus';
   img {
     margin: 0;
   }
+
+ #home button{
+   margin-left: 400px;
+   height: 100px;
+   width: 100px;
+   left: 50%;
+ }
 </style>
