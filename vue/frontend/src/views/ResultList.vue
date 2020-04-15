@@ -40,7 +40,7 @@ export default {
             nameItinerary: '',
             packagePost: {
                 itineraryName: this.nameItinerary,
-                itinerary: this.itenirary,
+                // itinerary: this.itenirary,
                 username: auth.getUser().sub,
             }
         }
@@ -71,26 +71,22 @@ export default {
                    Accept: 'application/json',
                    'Content-Type': 'application/json', 
                },
-               body: JSON.stringify({
-                itineraryName: this.nameItinerary,
-                itinerary: this.itenirary,
-                username: auth.getUser().sub,
-            }),
-               
-            })
+               body: JSON.stringify(packagePost)
+                 
+                // itineraryName: this.nameItinerary,
+                // itinerary: this.itenirary,
+                // username: auth.getUser().sub,
+            }
             .then((response)=>{
                 if(response.ok){
                     console.log('ok');
                 }
             })
-
-        }
+            )
         // saveItinerary(){
         //     console.log(this.itenirary);
         // }
-
     },
-
     computed: {
         addKey(){
             let holderArray = this.resultData;
@@ -100,7 +96,6 @@ export default {
             return holderArray;
         }
     }
-}
 </script>
 
 <style>

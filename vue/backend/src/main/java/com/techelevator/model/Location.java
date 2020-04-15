@@ -15,6 +15,8 @@ public class Location {
 	
 	private String state;
 	
+	
+	//dont forget to change these back!
 	private double latitude;
 	
 	private double longitude;
@@ -23,6 +25,9 @@ public class Location {
 	
 	private int locationId;
 
+	private String latitudeString;
+	
+	private String longitudeString;
 	
 	public Location() {
 		// TODO Auto-generated constructor stub
@@ -57,6 +62,18 @@ public class Location {
 		this.description = description;
 		this.latitude = latitude;
 		this.longitude = longitude;
+	}
+	public Location(int locationId, int zipCode, String name, String streetAddress, String city, String state, String description, String latitudeString, String longitudeString) {
+		super();
+		this.locationId = locationId;
+		this.zipCode = zipCode;
+		this.name = name;
+		this.streetAddress = streetAddress;
+		this.city = city;
+		this.state = state;
+		this.description = description;
+		this.latitudeString = latitudeString;
+		this.longitudeString = longitudeString;
 	}
 	
 	

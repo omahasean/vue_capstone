@@ -4,8 +4,11 @@
     <div class="landingImg">
         <landingImage/>
     </div>
-    <div class="slides">
-        <landingPhotoSlideshow/>
+    <!-- <div class="slides">
+        <landingPhotoSlideshow/> 
+    </div> -->
+    <div class="landing-details">
+        <landingPageDetails/>
     </div>
 </div>
 </template>
@@ -13,12 +16,14 @@
 <script>
 import landingImage from "./landingImage"
 import Navbar from "./Navbar"
-import landingPhotoSlideshow from "./landingPhotoSlideshow"
+// import landingPhotoSlideshow from "./landingPhotoSlideshow"
+import landingPageDetails from "./landingPageDetails"
 export default {
     components: {
         landingImage,
         Navbar,
-        landingPhotoSlideshow
+        // landingPhotoSlideshow,
+        landingPageDetails
     }
 
 }
@@ -29,12 +34,21 @@ export default {
     grid-template-areas: 
     "landingImg"
     "Slides"
+    "landing-details";
+    display:grid;
 }
 .landingImg{
     grid-area: landingImg;
-    padding-bottom: 60vh;
+    display: flex;
+    position: fixed;
 }
 .slides{
     grid-area: slides;
+    position: relative;
+}
+.landing-details{
+    grid-area: landing-details;
+    display:flex;
+    position:fixed;
 }
 </style>
