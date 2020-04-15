@@ -15,8 +15,9 @@
     
     <hr id="line">
 </div>
-<input type="text" v-model="nameItinerary"/>
-<button class="button-itinerary" type="button" @click="addItenirary(); saveItinerary()">Create Itinerary</button>
+<input type="text" v-model.trim="nameItinerary"/>
+<!-- <button class="button-itinerary" type="button" @click="addItenirary(); saveItinerary()">Create Itinerary</button> -->
+<button class="button-itinerary" type="button" @click="addItenirary()">Create Itinerary</button>
 <!-- <button class="save-itinerary" type="button" @click="saveItinerary">Save Tour</button> -->
 </div>
 </template>
@@ -38,11 +39,8 @@ export default {
             showDetail: false,
             detail: [],
             nameItinerary: '',
-            packagePost: {
-                itineraryName: this.nameItinerary,
-                // itinerary: this.itenirary,
-                username: auth.getUser().sub,
-            }
+            username: auth.getUser().sub,
+            
         }
     },
 
@@ -65,27 +63,22 @@ export default {
             }
         },
         saveItinerary(){
-            fetch(`${process.env.VUE_APP_REMOTE_API}/api/saveItinerary`,{
+            fetch(`${process.env.VUE_APP_REMOTE_API}/api/saveItinerary/${this.username}/${this.nameItinerary}`,{
                method: 'POST',
                headers: {
                    Accept: 'application/json',
                    'Content-Type': 'application/json', 
                },
-               body: JSON.stringify(this.packagePost)
-                 
-                // itineraryName: this.nameItinerary,
-                // itinerary: this.itenirary,
-                // username: auth.getUser().sub,
-            }
+               body: JSON.stringify(this.itenirary),
+               
+            })
             .then((response)=>{
                 if(response.ok){
                     console.log('ok');
                 }
+            
             })
-        )
-        // saveItinerary(){
-        //     console.log(this.itenirary);
-        // }
+
     }
     },
     computed: {

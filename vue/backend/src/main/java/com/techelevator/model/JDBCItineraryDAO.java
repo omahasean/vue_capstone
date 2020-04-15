@@ -117,9 +117,13 @@ public class JDBCItineraryDAO implements ItineraryDAO{
 		Itinerary itin = new Itinerary(localList);
 		
 		itin.setName(itinName);
+		for(Location n: localList) {
+			System.out.println(n.getLocation_id());
+		}
+		System.out.println(itin.getName());
 		
-		String queryString = "INSERT INTO itinerary (username, itinerary_name)\n" + 
-				"VALUES (?,?);";
+		String queryString = "INSERT INTO itinerary (itinerary_id,username, itinerary_name)\n" + 
+				"VALUES (DEFAULT,?,?);";
 		
 		jdbcTemplate.update(queryString, username, itinName);
 		
@@ -133,14 +137,14 @@ public class JDBCItineraryDAO implements ItineraryDAO{
 			System.out.print(results.getInt("itinerary_id"));
 		}
 		
-		String  updateStringForCrossTable = "INSERT INTO itinerary_landmarks (id, itinerary_id, landmark_id) VALUES (DEFAULT,?,?)";
+		String  updateStringForCrossTable = "INSERT INTO itinerary_landmarks (itinerary_id, landmark_id) VALUES (?,?)";
 
 		ArrayList<Object[]> batchArgs = new ArrayList<Object[]>();
 		
 		for(Location local: itin.getLocationList()) {
 			Integer[] batch = new Integer[]{		
 				itin.getItineraryId(),
-				local.getLocationId(),
+				local.getLocation_id(),
 			};
 			batchArgs.add(batch);
 			}

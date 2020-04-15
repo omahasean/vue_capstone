@@ -7,8 +7,11 @@
     
     <img v-if="show === false" v-bind:src="showImage()">
     <!-- <img v-else v-bind:src=" imageSrc.src1 "> -->
-    <img v-else-if="wp.length === 0" v-bind:src="getPins()">
-    <img v-else v-bind:src="getWaypoints()">
+    <!-- <img id="pinImage" v-else-if="wp.length === 0" v-bind:src="getPins()">
+    <img id="waypointImage" v-else v-bind:src="getWaypoints()"> -->
+ <img id="pinImage"   v-bind:src="getPins()">
+    <img id="waypointImage"   v-bind:src="getWaypoints()">
+   
     
     </div>
    
@@ -45,7 +48,8 @@ export default {
       pins: '',
       pinsArray: [],
       wpArray: [],
-      wp: ''
+      wp: '',
+      showPin: false
       
     
     }
@@ -68,6 +72,7 @@ export default {
     showNew(city) {
       this.userCity = city;
       this.show = true;
+      this.showPin = true;
       console.log(this.userCity);
     },
 
@@ -92,11 +97,26 @@ export default {
         return response.blob();
       })
       .then((blob) => {
+        // document.getElementById('home').r
         let imageURL = URL.createObjectURL(blob);
         let img = document.createElement('img');
         img.src = imageURL;
+        img.id = 'pins';
         
-        document.getElementById('home').appendChild(img);
+        
+        let routeImage = document.getElementById('waypointImg');
+        if(routeImage != null) {
+          document.getElementById('home').removeChild(routeImage)
+        }
+
+        if(document.getElementById('pins') != null) {
+          document.getElementById('home').removeChild('pins')
+        }
+        // if(){
+          document.getElementById('home').appendChild(img);
+        // } else {
+        // document.getElementById('home').replaceChild(img);
+        // }
       })
       
     },
@@ -136,7 +156,15 @@ export default {
         let imageURL = URL.createObjectURL(blob);
         let img = document.createElement('img');
         img.src = imageURL;
+        img.id = 'waypointImg'
+
+        let pinImage = document.getElementById('pins');
+        pinImage.parentNode.removeChild(pinImage);
+          // document.getElementById('home').removeChild(document.getElementById('pins'));
+
         document.getElementById('home').appendChild(img);
+       
+        // document.getElementById('home').replaceChild(img, pinImage);
       })
     }
 
