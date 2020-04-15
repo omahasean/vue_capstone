@@ -16,8 +16,8 @@
     <hr id="line">
 </div>
 <input type="text" v-model="nameItinerary"/>
-<button class="button-itinerary" type="button" @click="addItenirary">Create Itinerary</button>
-<button class="save-itinerary" type="button" @click="saveItinerary">Save Tour</button>
+<button class="button-itinerary" type="button" @click="addItenirary(); saveItinerary()">Create Itinerary</button>
+<!-- <button class="save-itinerary" type="button" @click="saveItinerary">Save Tour</button> -->
 </div>
 </template>
 
