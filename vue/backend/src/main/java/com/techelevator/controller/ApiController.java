@@ -95,11 +95,11 @@ public class ApiController {
 		return itineraryDao.getItineraryById(itineraryId, user.getUsername());
 	}
 	@PostMapping(path="/saveItinerary/{username}/{itineraryName}", consumes="application/json")
-	public void saveItineraryToDB(@RequestBody List<Location> location, @PathVariable String username, String itineraryName) {
-		for(Location n: location) {
-		System.out.println(n.getCity());
-		}
-//		itineraryDao.saveItineraryToDB(post.getUsername(), post.getItineraryName(), post.getItinerary().getLocationList());
+	public void saveItineraryToDB(@RequestBody ArrayList<Location> location, @PathVariable String username, @PathVariable String itineraryName) {
+//		for(Location n: location) {
+//		System.out.println(n.getCity());
+		System.out.println(username + " "+ itineraryName);
+		itineraryDao.saveItineraryToDB(username, itineraryName, location);
 	}
 	
 }

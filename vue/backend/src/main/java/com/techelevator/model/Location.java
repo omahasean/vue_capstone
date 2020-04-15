@@ -21,7 +21,7 @@ public class Location {
 	
 	private String description;
 	
-	private int locationId;
+	private int location_id;
 
 	
 	public Location() {
@@ -48,7 +48,7 @@ public class Location {
 	
 	public Location(int locationId, int zipCode, String name, String streetAddress, String city, String state, String description, double latitude, double longitude) {
 		super();
-		this.locationId = locationId;
+		this.location_id = locationId;
 		this.zipCode = zipCode;
 		this.name = name;
 		this.streetAddress = streetAddress;
@@ -136,12 +136,12 @@ public class Location {
 		this.description = description;
 	}
 
-	public int getLocationId() {
-		return locationId;
+	public int getLocation_id() {
+		return location_id;
 	}
 
-	public void setLocationId(int locationId) {
-		this.locationId = locationId;
+	public void setLocation_id(int location_id) {
+		this.location_id = location_id;
 	}
 
 
