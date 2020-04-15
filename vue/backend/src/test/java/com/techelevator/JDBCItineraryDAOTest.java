@@ -26,7 +26,7 @@ public class JDBCItineraryDAOTest extends DAOIntegrationTest {
 		testItin.setName("test3");
 		
 		
-		ArrayList<Itinerary> expectedItins = (ArrayList<Itinerary>) dao.getAllItinerariesForUser(1);
+		ArrayList<Itinerary> expectedItins = (ArrayList<Itinerary>) dao.getAllItinerariesForUser("user");
 		
 		Itinerary lastItinFromAll = expectedItins.get(2);
 		
@@ -47,7 +47,7 @@ public class JDBCItineraryDAOTest extends DAOIntegrationTest {
 		Itinerary testItin = new Itinerary(itinTestContents);
 		testItin.setName("test3");
 		
-		Itinerary expectedItin = dao.getItineraryById(3, 1);
+		Itinerary expectedItin = dao.getItineraryById(3, "user");
 		
 		Assert.assertTrue(testItin.getName().equals(expectedItin.getName()));
 	
@@ -64,9 +64,9 @@ public class JDBCItineraryDAOTest extends DAOIntegrationTest {
 		Itinerary testItin = new Itinerary(itinTestContents);
 		testItin.setName("test6");
 		
-		dao.saveItineraryToDB(1, testItin.getName(), testItin.getLocationList());
+		dao.saveItineraryToDB("user", testItin.getName(), testItin.getLocationList());
 		
-		Itinerary expectedItin = dao.getItineraryById(testItin.getItineraryId(), 1);
+		Itinerary expectedItin = dao.getItineraryById(testItin.getItineraryId(), "user");
 		
 		assertItinerariesEqual(expectedItin, testItin);
 	}

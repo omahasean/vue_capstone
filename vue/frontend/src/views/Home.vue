@@ -158,9 +158,6 @@ const city = 'columbus';
 </script>
 
 <style scoped>
-  /* .content-home{
-   margin-left:310px
-  } */
 
   img {
     margin: 0;

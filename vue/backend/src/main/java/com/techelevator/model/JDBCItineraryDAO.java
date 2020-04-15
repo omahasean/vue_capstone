@@ -76,8 +76,7 @@ public class JDBCItineraryDAO implements ItineraryDAO{
 		return itineraryList;
 	}
 
-	@Override
-	public Itinerary getItineraryById(int itineraryId, int userId) {
+	public Itinerary getItineraryById(int itineraryId, String username) {
 		
 		String queryString = "SELECT * FROM itinerary\n" + 
 				"JOIN itinerary_landmarks ON itinerary.itinerary_id = itinerary_landmarks.itinerary_id\n" + 
@@ -85,7 +84,7 @@ public class JDBCItineraryDAO implements ItineraryDAO{
 				"WHERE itinerary.user_id = ? AND itinerary.itinerary_id = ?;";
 		
 		
-		SqlRowSet results = jdbcTemplate.queryForRowSet(queryString, userId, itineraryId);
+		SqlRowSet results = jdbcTemplate.queryForRowSet(queryString, username, itineraryId);
 		
 		ArrayList<Location> locationList = new ArrayList<Location>();
 		
@@ -113,20 +112,20 @@ public class JDBCItineraryDAO implements ItineraryDAO{
 		return newItin;
 	}
 	
-	public void saveItineraryToDB(int userId, String itinName, ArrayList<Location> localList) {
+	public void saveItineraryToDB(String username, String itinName, ArrayList<Location> localList) {
 		
 		Itinerary itin = new Itinerary(localList);
 		
 		itin.setName(itinName);
 		
-		String queryString = "INSERT INTO itinerary (user_id, itinerary_name)\n" + 
+		String queryString = "INSERT INTO itinerary (username, itinerary_name)\n" + 
 				"VALUES (?,?);";
 		
-		jdbcTemplate.update(queryString, userId, itinName);
+		jdbcTemplate.update(queryString, username, itinName);
 		
-		String queryForItinId = "SELECT itinerary_id FROM itinerary WHERE user_id=? AND itinerary_name = ?";
+		String queryForItinId = "SELECT itinerary_id FROM itinerary WHERE username=? AND itinerary_name = ?";
 		
-		SqlRowSet results = jdbcTemplate.queryForRowSet(queryForItinId, userId, itinName);
+		SqlRowSet results = jdbcTemplate.queryForRowSet(queryForItinId, username, itinName);
 		
 		while(results.next()) {
 			itin.setItineraryId(results.getInt("itinerary_id"));
@@ -134,7 +133,7 @@ public class JDBCItineraryDAO implements ItineraryDAO{
 			System.out.print(results.getInt("itinerary_id"));
 		}
 		
-		String  updateStringForCrossTable = "INSERT INTO itinerary_landmarks (itinerary_id, landmark_id) VALUES (?,?)";
+		String  updateStringForCrossTable = "INSERT INTO itinerary_landmarks (id, itinerary_id, landmark_id) VALUES (DEFAULT,?,?)";
 
 		ArrayList<Object[]> batchArgs = new ArrayList<Object[]>();
 		

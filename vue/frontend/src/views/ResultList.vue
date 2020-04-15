@@ -1,21 +1,28 @@
 <template>
 <div class="itinerary-list">
-<div id="result" v-for="(result, index) in resultData" :key="index" v-bind:value="result">
-    <ul>
+<div id="result" v-for="(result, index) in addKey" :key="index"  >
+   
     <div>
-    <li @click="details" v-bind:value="showDetail">{{result.name}}</li>
-    <p v-show="showDetail">{{result.streetAddress}} {{result.city}}, {{result.state}} {{result.zipCode}}<br>{{result.description}}</p>
+    <p @click="details(result)">{{result.name}}</p>
 
-    <input type="checkbox" id="result.name"  v-bind:value="result" v-model="itenirary">
+
+    <!-- <p v-show="showDetail">{{result.streetAddress}} {{result.city}}, {{result.state}} {{result.zipCode}}<br>{{result.description}}</p> -->
+<p v-if="result.show">{{result.streetAddress}} {{result.city}}, {{result.state}} {{result.zipCode}}<br>{{result.description}}</p>
     </div>
-    </ul> 
+    <div>
+    <input type="checkbox"  v-bind:value="result" :id="result.name" v-model="itenirary">
+    </div>
+    
     <hr id="line">
 </div>
-<button class="button-itinerary" type="button" @click="addItenirary">Create Itinerary</button>
+<input type="text" v-model="nameItinerary"/>
+<button class="button-itinerary" type="button" @click="addItenirary(); saveItinerary()">Create Itinerary</button>
+<!-- <button class="save-itinerary" type="button" @click="saveItinerary">Save Tour</button> -->
 </div>
 </template>
 
 <script>
+import auth from '../auth'
 export default {
     name: 'ResultList',
 
@@ -30,6 +37,12 @@ export default {
             selected: [],
             showDetail: false,
             detail: [],
+            nameItinerary: '',
+            packagePost: {
+                itineraryName: this.nameItinerary,
+                itinerary: this.itenirary,
+                username: auth.getUser().sub,
+            }
         }
     },
 
@@ -41,21 +54,50 @@ export default {
             
             this.$emit('loadDetails', this.result)
         },
-        details(){
-            if(this.showDetail===false){
-                this.showDetail=true;
+        details (result){
+            if(result.show === false){
+                result.show = true;
+                this.$forceUpdate();
             }
             else{
-                this.showDetail=false;
+                result.show = false;
+                this.$forceUpdate();
             }
+        },
+        saveItinerary(){
+            fetch(`${process.env.VUE_APP_REMOTE_API}/api/saveItinerary`,{
+               method: 'POST',
+               headers: {
+                   Accept: 'application/json',
+                   'Content-Type': 'application/json', 
+               },
+               body: JSON.stringify({
+                itineraryName: this.nameItinerary,
+                itinerary: this.itenirary,
+                username: auth.getUser().sub,
+            }),
+               
+            })
+            .then((response)=>{
+                if(response.ok){
+                    console.log('ok');
+                }
+            })
+
         }
+        // saveItinerary(){
+        //     console.log(this.itenirary);
+        // }
+
     },
 
     computed: {
         addKey(){
-            return this.resultData.map((e) => {
-                e.checked = false;
-            })
+            let holderArray = this.resultData;
+            holderArray.forEach((e) => {
+                e.show = false;
+            });
+            return holderArray;
         }
     }
 }
@@ -70,9 +112,18 @@ export default {
     ". button ." 
 }
 #result {
+    grid-area: result;
     color: white;
     text-align: center;
 }
+
+/* #result ~ h5 {
+    display: none;
+}
+
+#result ~ h5:active {
+    display:inline-block;
+} */
 .button-itinerary{
     grid-area: button;
     margin-left: 4em;
