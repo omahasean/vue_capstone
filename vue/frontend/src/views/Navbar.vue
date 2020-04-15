@@ -2,7 +2,7 @@
 <div>
   
   <ul class="nav">
-      <li><a href="/">Home</a></li>
+      <li><a href="/landing">Home</a></li>
       <li v-if="user === null"><a href="/login">Login</a></li>
       <li v-if="user === null"><a href="/register">Register</a></li>
       <li v-if="user != null"><a @click="logout" href="/">Logout</a></li>
