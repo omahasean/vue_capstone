@@ -14,7 +14,7 @@
         <Itenirary v-show="tour" v-if="directions === false" :iteniraryData="itenirary"/>
        
        
-        <Directions v-show="tour" :wp="wp" v-if="directions === true" />
+        <Directions v-show="!tour" :wp="wp" v-if="directions === true" />
         
         <button v-show="tour" type="button" @click="toggle">Toggle</button>
         

@@ -1,22 +1,23 @@
 <template>
 <div class="itinerary-list">
+    
 <div id="result" v-for="(result, index) in addKey" :key="index"  >
    
-    <div>
-    <p @click="details(result)">{{result.name}}</p>
+    <div id="itinerary-grid">
+    <p id="name" @click="details(result)">{{result.name}}</p>
 
 
     
-<p v-if="result.show">{{result.streetAddress}} {{result.city}}, {{result.state}} {{result.zipCode}}<br>{{result.description}}</p>
-    </div>
-    <div>
-    <input type="checkbox"  v-bind:value="result" :id="result.name" v-model="itenirary">
+<p id="details" v-if="result.show">{{result.streetAddress}} {{result.city}}, {{result.state}} {{result.zipCode}}<br>{{result.description}}</p>
+    <!-- </div>
+    <div> -->
+    <input id="box" type="checkbox"  v-bind:value="result" v-model="itenirary">
     </div>
     
     <hr id="line">
 </div>
 <input type="text" v-model.trim="nameItinerary"/>
-<button class="button-itinerary" type="button" @click="addItenirary(); saveItinerary()">Create Itinerary</button> 
+<button class="button-itinerary"  @click="addItenirary(); saveItinerary()">Create Itinerary</button> 
 <!--<button class="button-itinerary" type="button" @click="addItenirary()">Create Itinerary</button>-->
 <!-- <button class="save-itinerary" type="button" @click="saveItinerary">Save Tour</button> -->
 </div>
@@ -118,5 +119,28 @@ export default {
     font-size: 20px;
     font-family: 'Lobster', cursive;
 }
+
+/* #itinerary-grid{
+    display: grid;
+    grid-template-areas: "name box"
+                         "details details";
+    align-items: center;
+}
+
+#name {
+    grid-area: name;
+    margin-right: 0px;
+    padding-left: 0px;
+}
+
+#box {
+    grid-area: box;
+    margin-left: 0px;
+    padding-right: 0px;
+}
+
+#details {
+    grid-area: details;
+} */
 
 </style>

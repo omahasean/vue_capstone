@@ -1,6 +1,7 @@
 <template>
     <div id="directions">
-      <ul>
+        
+      <ul v-if="show === true">
           <option v-for="(direction,index) in newRoutes" :key="index">
           <li>{{direction}}</li>
           </option>
@@ -13,6 +14,7 @@
           <li>{{direction.instruction.text}}</li>
           </option> -->
       </ul>
+      <button @click="show = !show">Directions</button>
     </div>
 </template>
 
@@ -21,7 +23,8 @@ export default {
     name: 'Directions',
 
     props: {
-        wp: String
+        wp: String,
+        wayPoints: Array
     },
 
     data() {
@@ -31,23 +34,52 @@ export default {
             subLegs: [],
             routeLegs: [],
             newRoutes:[],
-            itineraryRoutes: []
+            itineraryRoutes: [],
+            newWPArray: [],
+            points: '',
+            show: false,
         }
     },
 
     // computed: {
-    //     getRoutes() {
-    //        return this.routeLegs.map((e) => {
-    //             return e.itineraryItems.forEach((route) => {
-    //                return route.instruction.text;
-    //            });
-    //        });
+    //     addKey() {
+    //   let holderArray = this.newRoutes;
+    //   holderArray.forEach(e => {
+    //     e.show = false;
+    //   });
+    //   return holderArray;
     //     }
     // },
 
+    // methods: {
+    //     showItinerary(result) {
+    //   if (result.show === false) {
+    //     result.show = true;
+    //     this.$forceUpdate();
+    //   } else {
+    //     result.show = false;
+    //     this.$forceUpdate();
+    //   }
+    // }
+    // },
+
+    
+
+    
+        created(){
+            console.log(this.wayPoints)
+            this.newWPArray = this.wayPoints.map((e) =>{
+                return `wp.${this.wayPoints.indexOf(e)+1}=${e.latitude},-${e.longitude}`;
+        });
+        this.points = '';
+        this.points = this.newWPArray.join('&');
+        
+        },
+    
+
 
     beforeMount() {
-        fetch(`http://dev.virtualearth.net/REST/v1/Routes/Driving?${this.wp}&o=json&key=AmvR-c42ne6GrECkyJERi7B9mjs7vH-7OGFoG7jf405tiyb7huCJIfK1t_kn8S7m`, {
+        fetch(`http://dev.virtualearth.net/REST/v1/Routes/Driving?${this.points}&o=json&key=AmvR-c42ne6GrECkyJERi7B9mjs7vH-7OGFoG7jf405tiyb7huCJIfK1t_kn8S7m`, {
             method: 'GET',
 
             headers: {
@@ -58,16 +90,6 @@ export default {
            return response.json()
         })
         .then((json) => {
-           
-           
-           //console.log(this.newRoutes)
-            // this.routeLegs = this.newRoutes.map((routeObject) => {
-            //     routeObject.itineraryItems.forEach((direction) => {
-            //         console.log(direction.instuction.text);
-            //     })
-            // });
-
-            // console.log(this.routeLegs)
 
             let numberOfStops = json.resourceSets[0].resources[0].routeLegs.length;
             this.newRoutes = []
@@ -77,18 +99,16 @@ export default {
                     this.newRoutes.push(item.instruction.text);
                 });
             }
-
-            // console.log(this.newRoutes);
-            // this.directions = json.resourceSets[0].resources[0].routeLegs[0].itineraryItems;
-            // this.subLegs = json.resourceSets[0].resources[0].routeLegs[1].itineraryItems;
             
         })
        .catch((err) => console.log(err));
-    },
+    }
+    }
 
     
 
-}
+
+
 </script>
 
 <style>
