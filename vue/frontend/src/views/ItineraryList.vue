@@ -49,7 +49,7 @@ export default {
     }
   },
 
-  beforeMount() {
+  mounted() {
     fetch(
       `${process.env.VUE_APP_REMOTE_API}/api/getUser/${auth.getUser().sub}`,
       {
@@ -71,8 +71,10 @@ export default {
         //     this.itineraryNames.push(e.name);
         // });
       });
+  
   }
-};
+}
+ 
 </script>
 
 <style>
