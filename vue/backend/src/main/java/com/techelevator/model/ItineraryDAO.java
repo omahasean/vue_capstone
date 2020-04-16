@@ -14,4 +14,6 @@ public interface ItineraryDAO {
 	
 	public void saveItineraryToDB(String username, String itinName, ArrayList<Location> localList);
 	
+	public void deleteItinerary(String username, int itineraryId);
+	
 }

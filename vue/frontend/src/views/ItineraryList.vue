@@ -28,6 +28,11 @@ export default {
  components: {
      Directions
  },
+
+ props: {
+     lat: Number,
+     long: Number
+ },
   data() {
     return {
       userItineraries: [],
@@ -90,6 +95,9 @@ export default {
 .userItineraries {
     color: white;
     display: grid;
+    /* grid-template-areas: "h3"
+                         "option"
+                         "directions"; */
     text-align: center;
     background: radial-gradient(#2e2e2e, #2e2e2e, rgba(153, 255, 148, .1));
     border-radius: 30px;
@@ -99,6 +107,7 @@ export default {
     max-width: 300px;
 }
 .userItineraries h3{
+    /* grid-area: h3; */
     color:white;
     font-family: 'Roboto', sans-serif;
     font-size: 30px;

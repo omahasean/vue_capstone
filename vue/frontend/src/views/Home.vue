@@ -3,7 +3,7 @@
   <div id="homePage" class="home">
     <Navbar/>
    
-    <Sidebar @cityToHome="showNew" @pushpins="formatPins" @sendItenirary="formatWP" :waypoints="wp"/>
+    <Sidebar @cityToHome="showNew" @pushpins="formatPins" @sendItenirary="formatWP" :waypoints="wp" :lat="currentLat" :long="currentLong"/>
   <div id="home" class="content-home">
     
     <img v-if="show === false" v-bind:src="showImage()">
@@ -136,8 +136,9 @@ export default {
 
     formatWP(iteniraryResults){
       this.wpArray = iteniraryResults.map((e) => {
-          return `wp.${iteniraryResults.indexOf(e)+1}=${e.latitude},-${e.longitude}`;
+          return `wp.${iteniraryResults.indexOf(e)+2}=${e.latitude},-${e.longitude}`;
         });
+      this.wpArray.unshift(`wp.1=${this.currentLat},${this.currentLong}`)
       this.wp = '';
       this.wp = this.wpArray.join('&');
       console.log(this.wp);

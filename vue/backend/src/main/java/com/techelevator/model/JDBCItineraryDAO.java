@@ -151,4 +151,15 @@ public class JDBCItineraryDAO implements ItineraryDAO{
 		jdbcTemplate.batchUpdate(updateStringForCrossTable, batchArgs);
 	}
 
+	@Override
+	public void deleteItinerary(String username, int itineraryId) {
+		String queryDelete = "DELETE FROM itinerary_landmarks WHERE itinerary_id = ?";
+		jdbcTemplate.update(queryDelete, itineraryId);
+		
+		String queryString = "DELETE FROM itinerary WHERE itinerary_id = ?";
+		jdbcTemplate.update(queryString, itineraryId);
+		
+		
+	}
+
 }

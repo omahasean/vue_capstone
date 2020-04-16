@@ -19,7 +19,7 @@
         <button v-show="tour" type="button" @click="toggle">Toggle</button>
         
         </div>
-<ItineraryList v-show="!tour"/>
+<ItineraryList v-show="!tour" :lat="lat" :long="long"/>
     </div>
 </template>
 
@@ -44,7 +44,9 @@ export default {
     },
 
     props: {
-        waypoints: String
+        waypoints: String,
+        lat: Number,
+        long: Number
     },
 
     data() {
