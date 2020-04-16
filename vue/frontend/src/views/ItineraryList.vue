@@ -7,10 +7,11 @@
       v-bind:value="result"
     >
       <h3 @click="showItinerary(result)">{{result.name}}</h3>
+      <button id="delete" @click="deleteItinerary(result)">Delete</button>
       <div v-if="result.show === true">
         <option v-for="(location, index) in result.locationList" :key="index">{{location.name}}</option>
         <!-- <button @click="showDirections" >Directions</button> -->
-        <Directions :wayPoints="result.locationList" :lat="lat" :long="long"/>
+        <Directions :wayPoints="result.locationList" :lat="lat" :long="long" />
       </div>
     </div>
   </div>
@@ -48,8 +49,24 @@ export default {
         result.show = false;
         this.$forceUpdate();
       }
-    }
-  },
+    },
+
+    deleteItinerary(result){
+console.log(result.itineraryId);
+fetch(
+`${process.env.VUE_APP_REMOTE_API}/api/delete/${auth.getUser().sub}/${result.itineraryId}`,
+{
+method: "DELETE",
+headers:{
+Accept: "application/json",
+"Content-Type": "application/json"
+}
+})
+.then(response=>{
+return response.json();
+
+});
+  }},
 
   computed: {
     addKey() {
@@ -91,32 +108,32 @@ export default {
 
 <style>
 .userItineraries {
-    color: white;
-    display: grid;
-    /* grid-template-areas: "h3"
+  color: white;
+  display: grid;
+  /* grid-template-areas: "h3"
                          "option"
                          "directions"; */
-    text-align: center;
-    background: radial-gradient(#2e2e2e, #2e2e2e, rgba(153, 255, 148, .1));
-    border-radius: 30px;
-    margin: 5px;
-    padding: 0px;
-    z-index: 102;
+  text-align: center;
+  background: radial-gradient(#2e2e2e, #2e2e2e, rgba(153, 255, 148, 0.1));
+  border-radius: 30px;
+  margin: 5px;
+  padding: 0px;
+  z-index: 102;
 }
-.userItineraries h3{
-    /* grid-area: h3; */
-    color:white;
-    font-family: 'Roboto', sans-serif;
-    font-size: 30px;
-    line-height: .3;
-    z-index: 103;
+.userItineraries h3 {
+  /* grid-area: h3; */
+  color: white;
+  font-family: "Roboto", sans-serif;
+  font-size: 30px;
+  line-height: 0.3;
+  z-index: 103;
 }
-.userItineraries h3:hover{
-    color: #0ffc03;
+.userItineraries h3:hover {
+  color: #0ffc03;
 }
-.userItineraries option{
-    font-family: 'Baloo Paaji 2', cursive;
-    /* grid-area: option; */
+.userItineraries option {
+  font-family: "Baloo Paaji 2", cursive;
+  /* grid-area: option; */
 }
 
 /* directions{
@@ -124,5 +141,4 @@ export default {
     max-width: 50px;
     overflow: hidden;
 } */
-
 </style>
