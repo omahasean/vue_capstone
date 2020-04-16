@@ -55,8 +55,8 @@ export default {
         result.show = false;
         this.$forceUpdate();
       }
-    }
     },
+    
 
   
 
@@ -72,6 +72,7 @@ Accept: "application/json",
 }
 })
 .then(location.reload());
+  }
   },
 
 
