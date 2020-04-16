@@ -3,7 +3,7 @@
         <h1 class="Logo">City Tours</h1>
         <ul class="tabs">
             <li @click="show">My Tours</li>
-            <li @click="hide">New Tour</li>
+            <li @click="hide(); getMapBack();">New Tour</li>
         </ul>
         <SearchMap v-show="tour" @sendSearch="recieveData" @sendCity="sendCity"/>
 
@@ -60,6 +60,7 @@ export default {
             username: auth.getUser().sub,
             showComp: false,
             
+            
         }
     },
 
@@ -98,12 +99,52 @@ export default {
             if(this.tour===false){
                 this.tour=true;
             }
+        },
+
+         getMapBack(){
+        fetch(`https://dev.virtualearth.net/REST/v1/Imagery/Map/Road/${this.lat},${this.long}/15?mapSize=2000,1000&pp=${this.lat},${this.long}&key=AmvR-c42ne6GrECkyJERi7B9mjs7vH-7OGFoG7jf405tiyb7huCJIfK1t_kn8S7m`,{
+        method: 'GET',
+
+        headers: {
+          'Content-Type': 'text/plain; charset=utf-8' 
         }
+      })
+      .then((response) => {
+        return response.blob();
+      })
+      .then((blob) => {
+        let imageURL = URL.createObjectURL(blob);
+        let img = document.createElement('img');
+        img.src = imageURL;
+        img.id = 'defaultImage';
+        
+        let pinImage = document.getElementById('pins');
+        let wpImage = document.getElementById('waypointImg');
+        // let dImage = document.getElementbyId('defaultImage');
+
+        if(wpImage != null) {
+        wpImage.parentNode.removeChild(wpImage);
+        }
+        // if(dImage != null){
+        // dImage.parentNode.removeChild(dImage);
+        // }
+        if(pinImage != null){
+        pinImage.parentNode.removeChild(pinImage);
+        }
+          
+
+        document.getElementById('home').appendChild(img);
+       
+        
+      })
+    
+    }
+
     },
 
     updated() {
         this.wp = this.waypoints;
-    }
+    },
 
 }
 </script>

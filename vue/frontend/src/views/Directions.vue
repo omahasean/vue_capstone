@@ -5,7 +5,7 @@
         {{direction}}
       </li>
     </ul>
-    <button @click="show = !show">Directions</button>
+    <button @click="show = !show; getMap();">Directions</button>
   </div>
 </template>
 
@@ -32,6 +32,48 @@ export default {
       points: "",
       show: false
     };
+  },
+
+  methods: {
+      getMap() {
+      fetch(`https://dev.virtualearth.net/REST/v1/Imagery/Map/Road/Routes/?${this.points}&mapSize=2000,1000&key=AmvR-c42ne6GrECkyJERi7B9mjs7vH-7OGFoG7jf405tiyb7huCJIfK1t_kn8S7m`, {
+        method: 'GET',
+
+        headers: {
+          'Content-Type': 'text/plain; charset=utf-8' 
+        }
+      })
+      .then((response) => {
+        //console.log(response.type);
+        return response.blob();
+      })
+      .then((blob) => {
+        let imageURL = URL.createObjectURL(blob);
+        let img = document.createElement('img');
+        img.src = imageURL;
+        img.id = 'waypointImg'
+
+        let pinImage = document.getElementById('pins');
+        let wpImage = document.getElementById('waypointImg');
+        let defaultImage = document.getElementById('defaultImage');
+        if(defaultImage != null){
+            defaultImage.parentNode.removeChild(defaultImage);
+        }
+        if(pinImage != null){
+            // document.getElementById('pins').removeChild(pinImage);
+            // document.getElementById('pins').removeChild(pinImage);
+        pinImage.parentNode.removeChild(pinImage);
+        }
+        if(wpImage != null) {
+        wpImage.parentNode.removeChild(wpImage);
+        }
+          // document.getElementById('home').removeChild(document.getElementById('pins'));
+
+        document.getElementById('home').appendChild(img, wpImage);
+       
+        // document.getElementById('home').replaceChild(img, pinImage);
+      })
+    }
   },
 
   created() {

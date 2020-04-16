@@ -6,7 +6,7 @@
     <Sidebar @cityToHome="showNew" @pushpins="formatPins" @sendItenirary="formatWP" :waypoints="wp" :lat="currentLat" :long="currentLong"/>
   <div id="home" class="content-home">
     
-    <img v-if="show === false" v-bind:src="showImage()">
+    <img id="defaultImage" v-if="show === false" v-bind:src="showImage()">
     <!-- <img v-else v-bind:src=" imageSrc.src1 "> -->
     <!-- <img id="pinImage" v-else-if="wp.length === 0" v-bind:src="getPins()">
     <img id="waypointImage" v-else v-bind:src="getWaypoints()"> -->
@@ -52,7 +52,8 @@ export default {
       wp: '',
       showPin: false,
       currentLat: 0,
-      currentLong: 0
+      currentLong: 0,
+  
       
     
     }

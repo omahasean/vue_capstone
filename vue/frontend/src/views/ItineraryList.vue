@@ -11,12 +11,12 @@
       <!-- <div v-if="result.show === true">
         <option v-for="(location, index) in result.locationList" :key="index">{{location.name}}</option> -->
         <!-- <button @click="showDirections" >Directions</button> -->
-        <Directions :wayPoints="result.locationList" :lat="lat" :long="long" />
+        <!-- <Directions :wayPoints="result.locationList" :lat="lat" :long="long" /> -->
       <div class="itinItems" v-if="result.show === true">
         <li v-for="(location, index) in result.locationList" :key="index">{{location.name}}</li>
         <!-- <button @click="showDirections" >Directions</button> -->
         <div id="directions">
-       <Directions :wayPoints="result.locationList" :lat="lat" :long="long" />
+       <Directions :wayPoints="result.locationList" :lat="lat" :long="long"/>
         </div>
       </div>
     </div>
@@ -42,7 +42,8 @@ export default {
     return {
       userItineraries: [],
       itineraryNames: [],
-      showArray: []
+      showArray: [],
+    
       // username: auth.getUser().sub, //this is not working currently(why)
     };
   },
@@ -55,7 +56,10 @@ export default {
         result.show = false;
         this.$forceUpdate();
       }
+    }
     },
+
+  
 
     deleteItinerary(result){
 console.log(result.itineraryId);
@@ -72,7 +76,7 @@ Accept: "application/json",
 return response.json();
 
 });
-  }},
+  },
 
   computed: {
     addKey() {
