@@ -16,4 +16,5 @@ public interface ItineraryDAO {
 	
 	public void deleteItinerary(String username, int itineraryId);
 	
+	
 }

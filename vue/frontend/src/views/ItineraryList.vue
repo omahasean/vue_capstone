@@ -6,7 +6,9 @@
       :key="index"
       v-bind:value="result"
     >
+
       <h3 @click="showItinerary(result)">{{result.name}}</h3>
+      <button id="delete" @click="deleteItinerary(result)">Delete</button>
       <div class="itinItems" v-if="result.show === true">
         <li v-for="(location, index) in result.locationList" :key="index">{{location.name}}</li>
         <!-- <button @click="showDirections" >Directions</button> -->
@@ -50,8 +52,25 @@ export default {
         result.show = false;
         this.$forceUpdate();
       }
-    }
+    },
+    deleteItinerary(result){
+      console.log(result.itineraryId);
+    fetch(
+      `${process.env.VUE_APP_REMOTE_API}/api/delete/${auth.getUser().sub}/${result.itineraryId}`,
+      {
+        method: "DELETE",
+        headers:{
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        }
+      })
+    .then(response=>{
+      return response.json();
+
+    });
+
   },
+
 
   computed: {
     addKey() {
@@ -77,7 +96,7 @@ export default {
       .then(response => {
         return response.json();
       })
-      .then(json => {
+      .then((json) => {
         console.log(json);
 
         this.userItineraries = json;
@@ -85,10 +104,9 @@ export default {
         //     this.itineraryNames.push(e.name);
         // });
       });
-  
   }
 }
- 
+}
 </script>
 
 <style>
@@ -123,5 +141,11 @@ export default {
 }
 #directions{
   width: 300px;
+}
+#delete{
+  width: 50px;
+  justify-self: end;
+  margin-right: 10px;
+  margin-bottom: 10px;
 }
 </style>
