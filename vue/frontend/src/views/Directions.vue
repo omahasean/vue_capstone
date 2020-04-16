@@ -15,7 +15,9 @@ export default {
 
   props: {
     wp: String,
-    wayPoints: Array
+    wayPoints: Array,
+    lat: Number,
+    long: Number
   },
 
   data() {
@@ -35,10 +37,11 @@ export default {
   created() {
     console.log(this.wayPoints);
     this.newWPArray = this.wayPoints.map(e => {
-      return `wp.${this.wayPoints.indexOf(e) + 1}=${e.latitude},-${
+      return `wp.${this.wayPoints.indexOf(e) + 2}=${e.latitude},-${
         e.longitude
       }`;
     });
+   this. newWPArray.unshift(`wp.1=${this.lat},${this.long}`)
     this.points = "";
     this.points = this.newWPArray.join("&");
   },

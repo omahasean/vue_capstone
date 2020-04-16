@@ -10,7 +10,7 @@
       <div v-if="result.show === true">
         <option v-for="(location, index) in result.locationList" :key="index">{{location.name}}</option>
         <!-- <button @click="showDirections" >Directions</button> -->
-        <Directions :wayPoints="result.locationList"/>
+        <Directions :wayPoints="result.locationList" :lat="lat" :long="long"/>
       </div>
     </div>
   </div>
@@ -25,6 +25,11 @@ export default {
 
  components: {
      Directions
+ },
+
+ props: {
+     lat: Number,
+     long: Number
  },
   data() {
     return {
@@ -96,7 +101,7 @@ export default {
     border-radius: 30px;
     margin: 5px;
     padding: 0px;
-    
+    z-index: 102;
 }
 .userItineraries h3{
     /* grid-area: h3; */
@@ -104,6 +109,7 @@ export default {
     font-family: 'Roboto', sans-serif;
     font-size: 30px;
     line-height: .3;
+    z-index: 103;
 }
 .userItineraries h3:hover{
     color: #0ffc03;
