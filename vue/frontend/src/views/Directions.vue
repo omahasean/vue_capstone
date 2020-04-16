@@ -96,5 +96,9 @@ export default {
   font-size: 14px;
   width: 270px;
 }
+.directions button{
+  background-color: #99ff94;
+  border-radius: 5px;
+}
 
 </style>
