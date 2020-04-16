@@ -1,9 +1,9 @@
 <template>
-  <div id="directions">
+  <div class="directions">
     <ul v-if="show === true">
-      <option v-for="(direction,index) in newRoutes" :key="index">
-        <li>{{direction}}</li>
-      </option>
+      <li v-for="(direction,index) in newRoutes" :key="index">
+        {{direction}}
+      </li>
     </ul>
     <button @click="show = !show">Directions</button>
   </div>
@@ -77,7 +77,24 @@ export default {
 </script>
 
 <style>
-#directions {
+.directions{
   color: white;
+  margin: 0;
 }
+.directions ul{
+  display: grid;
+  margin:0;
+  padding: 0;
+  width: 270;
+}
+.directions ul li{
+  display: inline-flex;
+  justify-self: center;
+  justify-content: center;
+  padding-right: 5px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  width: 270px;
+}
+
 </style>

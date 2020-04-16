@@ -8,10 +8,16 @@
     >
       <h3 @click="showItinerary(result)">{{result.name}}</h3>
       <button id="delete" @click="deleteItinerary(result)">Delete</button>
-      <div v-if="result.show === true">
-        <option v-for="(location, index) in result.locationList" :key="index">{{location.name}}</option>
+      <!-- <div v-if="result.show === true">
+        <option v-for="(location, index) in result.locationList" :key="index">{{location.name}}</option> -->
         <!-- <button @click="showDirections" >Directions</button> -->
         <Directions :wayPoints="result.locationList" :lat="lat" :long="long" />
+      <div class="itinItems" v-if="result.show === true">
+        <li v-for="(location, index) in result.locationList" :key="index">{{location.name}}</li>
+        <!-- <button @click="showDirections" >Directions</button> -->
+        <div id="directions">
+       <Directions :wayPoints="result.locationList" :lat="lat" :long="long" />
+        </div>
       </div>
     </div>
   </div>
@@ -113,12 +119,13 @@ return response.json();
   /* grid-template-areas: "h3"
                          "option"
                          "directions"; */
-  text-align: center;
-  background: radial-gradient(#2e2e2e, #2e2e2e, rgba(153, 255, 148, 0.1));
-  border-radius: 30px;
-  margin: 5px;
-  padding: 0px;
-  z-index: 102;
+    text-align: center;
+    background: radial-gradient(#2e2e2e, #2e2e2e, rgba(153, 255, 148, .1));
+    border-radius: 30px;
+    margin: 5px;
+    padding: 0px;
+    z-index: 102;
+    max-width: 300px;
 }
 .userItineraries h3 {
   /* grid-area: h3; */
@@ -131,14 +138,11 @@ return response.json();
 .userItineraries h3:hover {
   color: #0ffc03;
 }
-.userItineraries option {
-  font-family: "Baloo Paaji 2", cursive;
-  /* grid-area: option; */
+.itinItems{
+    font-family: 'Baloo Paaji 2', cursive;
+    font-size: 20px;
 }
-
-/* directions{
-    grid-area: directions;
-    max-width: 50px;
-    overflow: hidden;
-} */
+#directions{
+  width: 300px;
+}
 </style>
