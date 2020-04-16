@@ -7,10 +7,12 @@
       v-bind:value="result"
     >
       <h3 @click="showItinerary(result)">{{result.name}}</h3>
-      <div v-if="result.show === true">
-        <option v-for="(location, index) in result.locationList" :key="index">{{location.name}}</option>
+      <div class="itinItems" v-if="result.show === true">
+        <li v-for="(location, index) in result.locationList" :key="index">{{location.name}}</li>
         <!-- <button @click="showDirections" >Directions</button> -->
+        <div id="directions">
         <Directions :wayPoints="result.locationList"/>
+        </div>
       </div>
     </div>
   </div>
@@ -94,6 +96,7 @@ export default {
     margin: 5px;
     padding: 0px;
     z-index: 102;
+    max-width: 300px;
 }
 .userItineraries h3{
     color:white;
@@ -105,8 +108,11 @@ export default {
 .userItineraries h3:hover{
     color: #0ffc03;
 }
-.userItineraries option{
+.itinItems{
     font-family: 'Baloo Paaji 2', cursive;
+    font-size: 20px;
 }
-
+#directions{
+  width: 300px;
+}
 </style>

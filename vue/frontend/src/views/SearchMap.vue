@@ -8,7 +8,7 @@
            
            <div id="list">
            <label for="radius" class="radius">Distance from: </label>
-           <select v-model.number="radius" class="radius">
+           <select v-model.number="radius" class="radius" placeholder="Miles away">
              <option disabled value="">Miles away</option>
              <option value="5">5</option>
              <option value="10">10</option>
@@ -132,9 +132,10 @@ methods: {
     font-family: 'Lobster', cursive;
   }
   #line{
-    margin-top: 1em;
     border-color: #99ff94;
     width: 15em;
+    border-top: 1px solid #99ff94;
+    border-bottom: 1px solid;
     }
   h2{
     display: flex;
@@ -156,6 +157,9 @@ methods: {
   }
   .radius{
     grid-area: radius;
-    padding-left: 1em;
+    padding: 1em;
+  }
+  .radius select{
+    padding:20px;
   }
 </style>
