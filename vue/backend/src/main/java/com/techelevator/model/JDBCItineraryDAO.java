@@ -122,7 +122,7 @@ public class JDBCItineraryDAO implements ItineraryDAO{
 		}
 		System.out.println(itin.getName());
 		
-		String queryString = "INSERT INTO itinerary (itinerary_id,username, itinerary_name)\n" + 
+		String queryString = "INSERT INTO itinerary (itinerary_id, username, itinerary_name)\n" + 
 				"VALUES (DEFAULT,?,?);";
 		
 		jdbcTemplate.update(queryString, username, itinName);
@@ -161,5 +161,7 @@ public class JDBCItineraryDAO implements ItineraryDAO{
 		
 		
 	}
+
+
 
 }

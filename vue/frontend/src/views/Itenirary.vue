@@ -1,6 +1,6 @@
 <template>
 <div class="itenirary-container">
-    <h1>Your Itinerary</h1>
+    <h1>Tour Itinerary</h1>
     <ul class="itinerary-display">
 
         <li class="itinerary" v-for="(result, index) in iteniraryData" :key="index">
@@ -9,16 +9,45 @@
         </li> 
 
     </ul>
+    <div id="itinerary-Name">
+    <label for="itineraryName">Itinerary Name  </label>
+    <input id="itineraryName" type="text" v-model.trim="nameItinerary"/>
+    <button class="button-itinerary" type="button" @click="saveItinerary()">Save Tour</button>
+    </div>
 </div>
     
 </template>
 
 <script>
+import auth from "../auth.js"
 export default {
     name: 'Itenirary',
-
+    
+    data(){
+        return{
+        nameItinerary: '',
+        username: auth.getUser().sub,
+        }
+    },
     props: {
         iteniraryData: Array
+    },
+    methods:{
+     saveItinerary(){
+         console.log(this.itinerary)
+         console.log(this.iteniraryData)
+         console.log(this.nameItinerary)
+         console.log(this.username)
+        fetch(`${process.env.VUE_APP_REMOTE_API}/api/saveItinerary/${this.username}/${this.nameItinerary}`,{
+               method: 'POST',
+               headers: {
+                   Accept: 'application/json',
+                   'Content-Type': 'application/json', 
+            },
+               body: JSON.stringify(this.iteniraryData),
+               
+            })
+    }
     }
 }
 </script>
@@ -49,4 +78,26 @@ li {
     margin-block-end: 0px;
     padding-inline-start: 0px;
 }
+#itinerary-Name{
+    color:rgba(153, 255, 148, 1);
+    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    justify-items: center;
+    align-self: center;
+    padding: 5px;
+}
+#itinerary-Name button{
+    margin-top: 10px;
+}
+#itinerary-Name label{
+    align-self: center;
+    padding-left: 15px;
+    padding-bottom: 5px;
+    font-family: 'Open-Sans', sans-serif;
+}
+
+
 </style>

@@ -5,13 +5,12 @@
       v-for="(result, index) in addKey"
       :key="index"
       v-bind:value="result"
+      v-show="result.name!=null"
     >
+      <div class="button-header">
       <h3 @click="showItinerary(result)">{{result.name}}</h3>
-      <button id="delete" @click="deleteItinerary(result)">Delete</button>
-      <!-- <div v-if="result.show === true">
-        <option v-for="(location, index) in result.locationList" :key="index">{{location.name}}</option> -->
-        <!-- <button @click="showDirections" >Directions</button> -->
-        <!-- <Directions :wayPoints="result.locationList" :lat="lat" :long="long" /> -->
+      <button id="delete" @click="deleteItinerary(result)">X</button>
+      </div>
       <div class="itinItems" v-if="result.show === true">
         <li v-for="(location, index) in result.locationList" :key="index">{{location.name}}</li>
         <!-- <button @click="showDirections" >Directions</button> -->
@@ -72,11 +71,9 @@ Accept: "application/json",
 "Content-Type": "application/json"
 }
 })
-.then(response=>{
-return response.json();
-
-});
+.then(location.reload());
   },
+
 
   computed: {
     addKey() {
@@ -102,7 +99,7 @@ return response.json();
       .then(response => {
         return response.json();
       })
-      .then(json => {
+      .then((json) => {
         console.log(json);
 
         this.userItineraries = json;
@@ -110,10 +107,8 @@ return response.json();
         //     this.itineraryNames.push(e.name);
         // });
       });
-  
   }
 }
- 
 </script>
 
 <style>
@@ -148,5 +143,30 @@ return response.json();
 }
 #directions{
   width: 300px;
+}
+#delete{
+  width: 25px;
+  margin-bottom: 10px;
+  background-color: red;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  border-radius: 5px;
+  max-height: 20px;
+  margin-top: 8px;
+  margin-right: 30px;
+}
+.button-header{
+  display: inline-flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+}
+.button-header button{
+  float:right;
+}
+.button-header h3{
+  margin-left: 30px;
+  text-transform: capitalize;
 }
 </style>

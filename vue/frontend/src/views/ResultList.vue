@@ -16,13 +16,13 @@
     
 
 </div>
-<div id="itinerary-Name">
+<!-- <div id="itinerary-Name">
 <label for="itineraryName">Itinerary Name:  </label>
-<input id="itineraryName" type="text" v-model.trim="nameItinerary"/>
-</div>
-<button class="button-itinerary" type="button" @click="addItenirary(); saveItinerary()">Create Itinerary</button> 
-<input type="text" v-model.trim="nameItinerary"/>
-
+<input id="itineraryName" type="text" v-model.trim="nameItinerary"/> 
+</div> -->
+<button class="button-itinerary" type="button" @click="addItenirary()">Create Tour</button> 
+<!-- 
+<button class="button-itinerary" type="button" @click="saveItinerary()">Save Tour</button> -->
 </div>
 </template>
 
@@ -66,16 +66,16 @@ export default {
                 this.$forceUpdate();
             }
         },
-        saveItinerary(){
-            fetch(`${process.env.VUE_APP_REMOTE_API}/api/saveItinerary/${this.username}/${this.nameItinerary}`,{
-               method: 'POST',
-               headers: {
-                   Accept: 'application/json',
-                   'Content-Type': 'application/json', 
-               },
-               body: JSON.stringify(this.itenirary),
+        // saveItinerary(){
+        //     fetch(`${process.env.VUE_APP_REMOTE_API}/api/saveItinerary/${this.username}/${this.nameItinerary}`,{
+        //        method: 'POST',
+        //        headers: {
+        //            Accept: 'application/json',
+        //            'Content-Type': 'application/json', 
+        //        },
+        //        body: JSON.stringify(this.itenirary),
                
-            })
+        //     })
             // .then((response)=>{
                
             
@@ -84,7 +84,7 @@ export default {
         }
         
 
-    },
+    ,
     computed: {
         addKey(){
             let holderArray = this.resultData;
@@ -124,12 +124,13 @@ export default {
 }
 .button-itinerary{
     grid-area: button;
-    margin-left: 4em;
-    width: 50%;
+    margin-left: 2.5em;
+    width: 70%;
     height: 20%;
     padding: 3px;
     font-size: 20px;
     font-family: 'Lobster', cursive;
+    background-color: rgba(153, 255, 148, 1);
 }
 #itinerary-Name{
     color:rgba(153, 255, 148, 1);

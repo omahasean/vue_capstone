@@ -107,4 +107,9 @@ public class ApiController {
 	public void deleteItineraryFromDB(@PathVariable int itineraryId, @PathVariable String username) {
 	itineraryDao.deleteItinerary(username, itineraryId);
 }
+	@PostMapping(path="/update/{username}/{itineraryId}/{itineraryName}", consumes="application/json")
+	public void updateItinerary(@PathVariable int itineraryId, @PathVariable String username, @RequestBody ArrayList<Location> localList, @PathVariable String itineraryName) {
+		itineraryDao.deleteItinerary(username, itineraryId);
+		itineraryDao.saveItineraryToDB(username, itineraryName, localList);
+	}
 }
