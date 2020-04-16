@@ -88,13 +88,18 @@ export default {
 .userItineraries {
     color: white;
     display: grid;
+    /* grid-template-areas: "h3"
+                         "option"
+                         "directions"; */
     text-align: center;
     background: radial-gradient(#2e2e2e, #2e2e2e, rgba(153, 255, 148, .1));
     border-radius: 30px;
     margin: 5px;
     padding: 0px;
+    
 }
 .userItineraries h3{
+    /* grid-area: h3; */
     color:white;
     font-family: 'Roboto', sans-serif;
     font-size: 30px;
@@ -105,6 +110,13 @@ export default {
 }
 .userItineraries option{
     font-family: 'Baloo Paaji 2', cursive;
+    /* grid-area: option; */
 }
+
+/* directions{
+    grid-area: directions;
+    max-width: 50px;
+    overflow: hidden;
+} */
 
 </style>
