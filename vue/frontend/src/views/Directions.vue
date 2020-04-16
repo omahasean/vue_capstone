@@ -41,7 +41,7 @@ export default {
         e.longitude
       }`;
     });
-   this. newWPArray.unshift(`wp.1=${this.lat},${this.long}`)
+    this.newWPArray.unshift(`wp.1=${this.lat},${this.long}`)
     this.points = "";
     this.points = this.newWPArray.join("&");
   },
