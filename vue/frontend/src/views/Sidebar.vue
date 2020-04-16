@@ -16,7 +16,7 @@
        
         
         
-        <button v-show="tour" type="button" @click="toggle">Toggle</button>
+        <!-- <button v-show="tour" type="button" @click="toggle">Toggle</button> -->
         
         </div>
 <ItineraryList v-show="!tour" :lat="lat" :long="long"/>

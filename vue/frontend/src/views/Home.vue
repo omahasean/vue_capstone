@@ -216,14 +216,32 @@ const city = 'columbus';
 
 <style scoped>
 
-  img {
+#homepage {
+  display: grid;
+  grid-template-areas: "navbar navbar"
+                        "sidebar image"
+}
+  #home {
     margin: 0;
+    grid-area: image;
+    width: 100%;
+    position: fixed;
+    
+    
   }
 
- #home button{
-   margin-left: 400px;
-   height: 100px;
-   width: 100px;
-   left: 50%;
- }
+  #home img{
+    object-fit: cover;
+    position: fixed;
+  }
+
+  Navbar{
+    grid-area: navbar;
+  }
+
+  Sidebar {
+    grid-area: sidebar;
+  }
+
+ 
 </style>
