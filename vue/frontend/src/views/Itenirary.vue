@@ -46,7 +46,7 @@ export default {
             },
                body: JSON.stringify(this.iteniraryData),
                
-            });
+            }).then(location.reload());
     }
     }
 }

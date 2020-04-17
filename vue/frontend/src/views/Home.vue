@@ -107,9 +107,13 @@ export default {
         let img = document.createElement('img');
         img.src = imageURL;
         img.id = 'pins';
-        
-        
         let routeImage = document.getElementById('waypointImg');
+
+        // let defaultImage = document.getElementById('defaultImage');
+        // if(defaultImage != null){
+        //     defaultImage.parentNode.removeChild(defaultImage);
+        // }
+
         if(routeImage != null) {
           document.getElementById('home').removeChild(routeImage)
         }
@@ -137,9 +141,9 @@ export default {
 
     formatWP(iteniraryResults){
       this.wpArray = iteniraryResults.map((e) => {
-          return `wp.${iteniraryResults.indexOf(e)+2}=${e.latitude},-${e.longitude}`;
+          return `wp.${iteniraryResults.indexOf(e)+1}=${e.latitude},-${e.longitude}`;
         });
-      this.wpArray.unshift(`wp.1=${this.currentLat},${this.currentLong}`)
+      // this.wpArray.unshift(`wp.1=${this.currentLat},${this.currentLong}`)
       this.wp = '';
       this.wp = this.wpArray.join('&');
       console.log(this.wp);

@@ -8,14 +8,14 @@
       v-show="result.name!=null"
     >
       <div class="button-header">
-      <h3 @click="showItinerary(result)">{{result.name}}</h3>
-      <button id="delete" @click="deleteItinerary(result)">X</button>
+        <h3 @click="showItinerary(result)">{{result.name}}</h3>
+        <button id="delete" @click="deleteItinerary(result)">X</button>
       </div>
       <div class="itinItems" v-if="result.show === true">
         <li v-for="(location, index) in result.locationList" :key="index">{{location.name}}</li>
         <!-- <button @click="showDirections" >Directions</button> -->
         <div id="directions">
-       <Directions :wayPoints="result.locationList" :lat="lat" :long="long"/>
+          <Directions :wayPoints="result.locationList" :lat="lat" :long="long" />
         </div>
       </div>
     </div>
@@ -29,20 +29,20 @@ import Directions from "./Directions";
 export default {
   name: "ItineraryList",
 
- components: {
-     Directions
- },
+  components: {
+    Directions
+  },
 
- props: {
-     lat: Number,
-     long: Number
- },
+  props: {
+    lat: Number,
+    long: Number
+  },
   data() {
     return {
       userItineraries: [],
       itineraryNames: [],
-      showArray: [],
-    
+      showArray: []
+
       // username: auth.getUser().sub, //this is not working currently(why)
     };
   },
@@ -56,25 +56,23 @@ export default {
         this.$forceUpdate();
       }
     },
-    
 
-  
-
-    deleteItinerary(result){
-console.log(result.itineraryId);
-fetch(
-`${process.env.VUE_APP_REMOTE_API}/api/delete/${auth.getUser().sub}/${result.itineraryId}`,
-{
-method: "DELETE",
-headers:{
-Accept: "application/json",
-"Content-Type": "application/json"
-}
-})
-.then(location.reload());
-  }
+    deleteItinerary(result) {
+      console.log(result.itineraryId);
+      fetch(
+        `${process.env.VUE_APP_REMOTE_API}/api/delete/${auth.getUser().sub}/${
+          result.itineraryId
+        }`,
+        {
+          method: "DELETE",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json"
+          }
+        }
+      ).then(location.reload());
+    }
   },
-
 
   computed: {
     addKey() {
@@ -100,7 +98,7 @@ Accept: "application/json",
       .then(response => {
         return response.json();
       })
-      .then((json) => {
+      .then(json => {
         console.log(json);
 
         this.userItineraries = json;
@@ -109,7 +107,7 @@ Accept: "application/json",
         // });
       });
   }
-}
+};
 </script>
 
 <style>
@@ -119,13 +117,13 @@ Accept: "application/json",
   /* grid-template-areas: "h3"
                          "option"
                          "directions"; */
-    text-align: center;
-    background: radial-gradient(#2e2e2e, #2e2e2e, rgba(153, 255, 148, .1));
-    border-radius: 30px;
-    margin: 5px;
-    padding: 0px;
-    z-index: 102;
-    max-width: 300px;
+  text-align: center;
+  background: radial-gradient(#2e2e2e, #2e2e2e, rgba(153, 255, 148, 0.1));
+  border-radius: 30px;
+  margin: 5px;
+  padding: 0px;
+  z-index: 102;
+  max-width: 300px;
 }
 .userItineraries h3 {
   /* grid-area: h3; */
@@ -138,35 +136,35 @@ Accept: "application/json",
 .userItineraries h3:hover {
   color: #0ffc03;
 }
-.itinItems{
-    font-family: 'Baloo Paaji 2', cursive;
-    font-size: 20px;
+.itinItems {
+  font-family: "Baloo Paaji 2", cursive;
+  font-size: 20px;
 }
-#directions{
+#directions {
   width: 300px;
 }
-#delete{
+#delete {
   width: 25px;
   margin-bottom: 10px;
   background-color: red;
   color: white;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 14px;
   border-radius: 5px;
   max-height: 20px;
   margin-top: 8px;
   margin-right: 30px;
 }
-.button-header{
+.button-header {
   display: inline-flex;
   justify-content: space-between;
   align-content: center;
   align-items: center;
 }
-.button-header button{
-  float:right;
+.button-header button {
+  float: right;
 }
-.button-header h3{
+.button-header h3 {
   margin-left: 30px;
   text-transform: capitalize;
 }
