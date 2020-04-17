@@ -3,7 +3,8 @@
   <header id="landing-image">
       <h1>City Tours</h1>
       <p id="tagline">Find your next adventure</p>
-      <a id="landing-button" href="/login">Start Your Tour</a>
+      <a id="landing-button" v-if="user === null" href="/login">Start Your Tour</a>
+      <a id="landing-button2" v-if="user != null" href="/">Start Your Tour</a>
   </header> 
   <section id="landing-details">
       <div id="body-container">
@@ -71,11 +72,18 @@
 </template>
 
 <script>
+import auth from "../auth";
 
 export default {
     name: 'landingContent',
     components:{
 
+    },
+
+    data(){
+        return {
+            user: auth.getUser()
+        }
     }
 }
 </script>
@@ -124,6 +132,19 @@ export default {
     color: white;
 }
 #landing-button{
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 1px solid;
+    border-radius: 10px;
+    background-color:rgba(0, 92, 117, .4);
+    background-blend-mode: darken;
+    margin-bottom: 50px;
+}
+
+#landing-button2{
     font-family: 'Roboto', sans-serif;
     font-size: 18px;
     color: white;
